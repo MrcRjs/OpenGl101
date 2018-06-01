@@ -10,7 +10,7 @@ GLsizei winWidth=900, winHeight=600;
 // GLfloat xwcMin=0.0, xwcMax=1200.0;
 // GLfloat ywcMin=0.0, ywcMax=900.0;
 
-GLfloat xwcMin = 0.0, xwcMax = 900.0;
+GLfloat xwcMin = -200.0, xwcMax = 900.0;
 GLfloat ywcMin = 0.0, ywcMax = 600.0;
 
 //se renombra a una matriz de tipo flotante de tamaño 3
@@ -205,9 +205,9 @@ void displayFcn(void)
     GLfloat Tx3 = 300.0, Ty3 = 300.0; // Trasladamos 300 unidades tanto en x como en y
     GLdouble angle = (M_PI / 2); // Rotamos 90
 
-    rotate2D(pivT3, angle);
-    translate2D(Tx3, Ty3);
-    scale2D(Sx3, Sy3, fixedPT3);
+	rotate2D(pivT3, angle);
+	translate2D(Tx3, Ty3);
+	scale2D(Sx3, Sy3, fixedPT3);
 
     transformVerts2D(nVerts, ov);
 
