@@ -647,12 +647,25 @@ void displayDeformedGir()
     glFlush();
 }
 
-void winReshapeFcn(GLint newWidth, GLint newHeight)
+void winReshapeFcn(GLint w, GLint h)
 {
+    if (h == 0)
+        h = 1;
+
+    glViewport(0, 0, w, h);
+
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluOrtho2D(xwcMin, xwcMax, ywcMin, ywcMax);
+
     glClear(GL_COLOR_BUFFER_BIT);
+
+    if (w <= h)
+        gluOrtho2D(xwcMin, xwcMax, ywcMin * h / w, ywcMax * h / w);
+    else
+        gluOrtho2D(xwcMin * w / h, xwcMax * w / h, ywcMin, ywcMax);
+
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
 }
 
 int main(int argc, char **argv)
