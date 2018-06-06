@@ -25,7 +25,7 @@ const GLint SCALE = 20;
 void init(void)
 {
     glClearColor(1.0, 1.0, 1.0, 0.0);
-    glPolygonMode(GL_FRONT, GL_LINE);
+    //glPolygonMode(GL_FRONT, GL_LINE);
 }
 
 void setColor(char *color)
