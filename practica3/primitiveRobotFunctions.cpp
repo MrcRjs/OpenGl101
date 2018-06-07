@@ -342,7 +342,7 @@ void drawFoot()
     setColor("metal-shadow");
     glVertex2i(0 * SCALE, 2.5 * SCALE);
     glVertex2i(-1 * SCALE, -2.5 * SCALE);
-    glVertex2i(0.5 * SCALE, -2.5 * SCALE);
+    glVertex2i(-0.5 * SCALE, -2.5 * SCALE);
     glEnd();
 }
 
