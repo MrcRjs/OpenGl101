@@ -393,6 +393,58 @@ void displayGir(void)
     glFlush();
 }
 
+void displayDeformedGir()
+{
+    /*
+        Deformed GIR
+    */
+    glClear(GL_COLOR_BUFFER_BIT);
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+
+    glPushMatrix();
+    glLoadIdentity();
+    glScalef(1.5, 1.5, 0);
+    glTranslatef(-1.0 * SCALE, 7.5f * SCALE, 0);
+    drawHead();
+    glPopMatrix();
+
+    glPushMatrix();
+    glLoadIdentity();
+    glTranslatef(-0.5 * SCALE, -4.5 * SCALE, 0);
+    drawBody();
+    glPopMatrix();
+
+    glPushMatrix();
+    glLoadIdentity();
+    glTranslatef(-6.5 * SCALE, 4.5 * SCALE, 0);
+    drawLeftArm();
+    glPopMatrix();
+
+    glPushMatrix();
+    glLoadIdentity();
+    glTranslatef(6 * SCALE, -3.5 * SCALE, 0);
+    glRotatef(45, 0, 0, 1);
+    drawRightArm();
+    glPopMatrix();
+
+    glPushMatrix();
+    glLoadIdentity();
+    glScalef(1, 0.5, 0);
+    glTranslatef(-2 * SCALE, -18.5 * SCALE, 0);
+    drawFoot();
+    glPopMatrix();
+
+    glPushMatrix();
+    glLoadIdentity();
+    glScalef(1.5, 0.8, 0);
+    glTranslatef(1 * SCALE, -12.5 * SCALE, 0);
+    drawFoot();
+    glPopMatrix();
+
+    glFlush();
+}
+
 void testDisplay(void)
 {
     glClear(GL_COLOR_BUFFER_BIT);
@@ -420,284 +472,6 @@ void testDisplay(void)
     //glRotatef(180,0,0,1);
     drawFoot();
     glPopMatrix();
-
-    glFlush();
-}
-// TO-DO Use transformations to deform GIR
-void displayDeformedGir()
-{
-    /*
-        Robot Head
-    */
-
-    // Robot neck
-    glBegin(GL_TRIANGLE_FAN);
-    setColor("metal");
-    glVertex2i(0 * SCALE, 1 * SCALE);
-    glVertex2i(0 * SCALE, -1 * SCALE);
-    glVertex2i(1 * SCALE, -1 * SCALE);
-    glVertex2i(1 * SCALE, 1 * SCALE);
-    glEnd();
-    glBegin(GL_TRIANGLE_FAN);
-    setColor("metal-shadow");
-    glVertex2i(0 * SCALE, 1 * SCALE);
-    glVertex2i(0 * SCALE, -1 * SCALE);
-    glVertex2i(0.3 * SCALE, -1 * SCALE);
-    glVertex2i(0.3 * SCALE, 1 * SCALE);
-    glEnd();
-
-    // Robot Head Center
-    glBegin(GL_TRIANGLE_FAN);
-    setColor("metal");
-    glVertex2i(-2 * SCALE, 12 * SCALE);
-    glVertex2i(-2 * SCALE, 1 * SCALE);
-    glVertex2i(3 * SCALE, 1 * SCALE);
-    glVertex2i(3 * SCALE, 12 * SCALE);
-    glEnd();
-
-    // Head Left
-    glBegin(GL_TRIANGLE_FAN);
-    setColor("metal");
-    glVertex2i(-4 * SCALE, 11 * SCALE);
-    glVertex2i(-4 * SCALE, 2 * SCALE);
-    glVertex2i(-2 * SCALE, 1 * SCALE);
-    glVertex2i(-2 * SCALE, 12 * SCALE);
-    glEnd();
-
-    glBegin(GL_TRIANGLE_FAN);
-    setColor("metal-shadow");
-    glVertex2i(-5 * SCALE, 10 * SCALE);
-    glVertex2i(-4 * SCALE, 2 * SCALE);
-    glVertex2i(-4 * SCALE, 11 * SCALE);
-    glEnd();
-
-    // Head Right
-    glBegin(GL_TRIANGLE_FAN);
-    setColor("metal");
-    glVertex2i(3 * SCALE, 12 * SCALE);
-    glVertex2i(3 * SCALE, 1 * SCALE);
-    glVertex2i(5 * SCALE, 2 * SCALE);
-    glVertex2i(5 * SCALE, 11 * SCALE);
-    glEnd();
-
-    glBegin(GL_TRIANGLES);
-    setColor("metal-light");
-    glVertex2i(5 * SCALE, 11 * SCALE);
-    glVertex2i(5 * SCALE, 2 * SCALE);
-    glVertex2i(6 * SCALE, 10 * SCALE);
-    glEnd();
-
-    // Antenna
-    glBegin(GL_TRIANGLES);
-    setColor("metal");
-    glVertex2i(0 * SCALE, 12 * SCALE);
-    glVertex2i(1 * SCALE, 12 * SCALE);
-    glVertex2i(2 * SCALE, 15 * SCALE);
-    glEnd();
-    glBegin(GL_TRIANGLES);
-    setColor("metal-shadow");
-    glVertex2i(0 * SCALE, 12 * SCALE);
-    glVertex2i(0.5 * SCALE, 12 * SCALE);
-    glVertex2i(2 * SCALE, 15 * SCALE);
-    glEnd();
-    glBegin(GL_TRIANGLE_FAN);
-    setColor("metal-shadow");
-    glVertex2i(2 * SCALE, 15.5 * SCALE);
-    glVertex2i(2 * SCALE, 15 * SCALE);
-    glVertex2i(2.5 * SCALE, 15 * SCALE);
-    glVertex2i(2.5 * SCALE, 15.5 * SCALE);
-    glEnd();
-
-    /*
-    Face
-    */
-    // Left Eye
-    glBegin(GL_TRIANGLES);
-    setColor("red");
-    glVertex2i(-6 * SCALE, 9 * SCALE);
-    glVertex2i(-4.5 * SCALE, 5 * SCALE);
-    glVertex2i(0 * SCALE, 6.5 * SCALE);
-    glEnd();
-
-    // Right Eye
-    glBegin(GL_TRIANGLE_FAN);
-    setColor("green");
-    glVertex2i(4 * SCALE, 7 * SCALE);
-    glVertex2i(3 * SCALE, 9 * SCALE);
-    glVertex2i(2 * SCALE, 8 * SCALE);
-    glVertex2i(2 * SCALE, 6 * SCALE);
-    glVertex2i(3 * SCALE, 5 * SCALE);
-    glVertex2i(5 * SCALE, 5 * SCALE);
-    glVertex2i(6 * SCALE, 6 * SCALE);
-    glVertex2i(6 * SCALE, 8 * SCALE);
-    glVertex2i(5 * SCALE, 9 * SCALE);
-    glVertex2i(3 * SCALE, 9 * SCALE);
-    glEnd();
-
-    /*
-        Mouth
-    */
-    glLineWidth(2.0);
-    glBegin(GL_LINES);
-    setColor("black");
-    glVertex2i(-1 * SCALE, 3 * SCALE);
-    glVertex2i(3 * SCALE, 4 * SCALE);
-    glEnd();
-    glBegin(GL_TRIANGLE_FAN);
-    setColor("pink");
-    glVertex2i(2 * SCALE, 3.666 * SCALE);
-    glVertex2i(2 * SCALE, 3 * SCALE);
-    glVertex2i(3 * SCALE, 3 * SCALE);
-    glVertex2i(3 * SCALE, 4 * SCALE);
-    glEnd();
-    glLineWidth(1.0);
-    glBegin(GL_LINES);
-    setColor("black");
-    glVertex2i(2.5 * SCALE, 3.8 * SCALE);
-    glVertex2i(2.5 * SCALE, 3.2 * SCALE);
-    glEnd();
-
-    /*
-        GIR Body
-    */
-
-    // Torso
-    glBegin(GL_TRIANGLE_FAN);
-    setColor("metal");
-    glVertex2i(-3 * SCALE, -1 * SCALE);
-    glVertex2i(-2 * SCALE, -8 * SCALE);
-    glVertex2i(3 * SCALE, -8 * SCALE);
-    glVertex2i(4 * SCALE, -1 * SCALE);
-    glEnd();
-    glBegin(GL_TRIANGLES);
-    setColor("metal-shadow");
-    glVertex2i(-3 * SCALE, -1 * SCALE);
-    glVertex2i(-2 * SCALE, -8 * SCALE);
-    glVertex2i(-1 * SCALE, -8 * SCALE);
-    glEnd();
-    glBegin(GL_TRIANGLES);
-    setColor("metal-light");
-    glVertex2i(4 * SCALE, -1 * SCALE);
-    glVertex2i(2.5 * SCALE, -8 * SCALE);
-    glVertex2i(3 * SCALE, -8 * SCALE);
-    glEnd();
-    glBegin(GL_TRIANGLE_FAN);
-    setColor("red");
-    glVertex2i(-1 * SCALE, -2 * SCALE);
-    glVertex2i(-1 * SCALE, -6 * SCALE);
-    glVertex2i(0.5 * SCALE, -6 * SCALE);
-    glVertex2i(0.5 * SCALE, -2 * SCALE);
-    glEnd();
-    glBegin(GL_TRIANGLE_FAN);
-    setColor("green");
-    glVertex2i(0.5 * SCALE, -2 * SCALE);
-    glVertex2i(0.5 * SCALE, -6 * SCALE);
-    glVertex2i(2 * SCALE, -6 * SCALE);
-    glVertex2i(2 * SCALE, -2 * SCALE);
-    glEnd();
-
-    /*
-        Left Arm
-    */
-
-    // Shoulder Left
-    glBegin(GL_TRIANGLE_FAN);
-    setColor("red");
-    glVertex2i(-4 * SCALE, -1 * SCALE);
-    glVertex2i(-4 * SCALE, -2 * SCALE);
-    glVertex2i(-3 * SCALE, -2 * SCALE);
-    glVertex2i(-3 * SCALE, -1 * SCALE);
-    glEnd();
-
-    // Arm
-    glBegin(GL_TRIANGLE_FAN);
-    setColor("metal-shadow");
-    glVertex2i(-8 * SCALE, 7 * SCALE);
-    glVertex2i(-4 * SCALE, -2 * SCALE);
-    glVertex2i(-4 * SCALE, -1 * SCALE);
-    glVertex2i(-7 * SCALE, 7 * SCALE);
-    glEnd();
-    glBegin(GL_TRIANGLE_FAN);
-    setColor("metal-shadow");
-    glVertex2i(-7 * SCALE, 10 * SCALE);
-    glVertex2i(-8 * SCALE, 7 * SCALE);
-    glVertex2i(-7 * SCALE, 7 * SCALE);
-    glVertex2i(-6 * SCALE, 10 * SCALE);
-    glEnd();
-
-    // Hand
-    glBegin(GL_TRIANGLES);
-    setColor("metal");
-    glVertex2i(-7 * SCALE, 10 * SCALE);
-    glVertex2i(-4 * SCALE, 10 * SCALE);
-    glVertex2i(-6 * SCALE, 11 * SCALE);
-    glEnd();
-
-    /*
-        Right Arm
-    */
-
-    // Shoulder Right
-    glBegin(GL_TRIANGLE_FAN);
-    setColor("green");
-    glVertex2i(4 * SCALE, -1 * SCALE);
-    glVertex2i(4 * SCALE, -2 * SCALE);
-    glVertex2i(5 * SCALE, -2 * SCALE);
-    glVertex2i(5 * SCALE, -1 * SCALE);
-    glEnd();
-
-    // Arm
-    glBegin(GL_TRIANGLES);
-    setColor("metal");
-    glVertex2i(4 * SCALE, -2 * SCALE);
-    glVertex2i(4 * SCALE, -8 * SCALE);
-    glVertex2i(5 * SCALE, -2 * SCALE);
-    glEnd();
-
-    // Hand
-    glBegin(GL_TRIANGLES);
-    setColor("metal-shadow");
-    glVertex2i(4 * SCALE, -8 * SCALE);
-    glVertex2i(5 * SCALE, -8 * SCALE);
-    glVertex2i(5 * SCALE, -7 * SCALE);
-    glEnd();
-    glBegin(GL_TRIANGLES);
-    setColor("metal");
-    glVertex2i(4 * SCALE, -8 * SCALE);
-    glVertex2i(6 * SCALE, -8 * SCALE);
-    glVertex2i(6 * SCALE, -7 * SCALE);
-    glEnd();
-
-    /*
-    Legs
-    */
-    // Left
-    glBegin(GL_TRIANGLES);
-    setColor("metal");
-    glVertex2i(-1 * SCALE, -8 * SCALE);
-    glVertex2i(-2 * SCALE, -13 * SCALE);
-    glVertex2i(0 * SCALE, -13 * SCALE);
-    glEnd();
-    glBegin(GL_TRIANGLES);
-    setColor("metal-shadow");
-    glVertex2i(-1 * SCALE, -8 * SCALE);
-    glVertex2i(-2 * SCALE, -13 * SCALE);
-    glVertex2i(-1.5 * SCALE, -13 * SCALE);
-    glEnd();
-
-    // Right
-    glBegin(GL_TRIANGLES);
-    setColor("metal");
-    glVertex2i(2 * SCALE, -8 * SCALE);
-    glVertex2i(1 * SCALE, -13 * SCALE);
-    glVertex2i(3 * SCALE, -13 * SCALE);
-    glEnd();
-    glBegin(GL_TRIANGLES);
-    setColor("metal-shadow");
-    glVertex2i(2 * SCALE, -8 * SCALE);
-    glVertex2i(1 * SCALE, -13 * SCALE);
-    glVertex2i(1.5 * SCALE, -13 * SCALE);
-    glEnd();
 
     glFlush();
 }
@@ -736,15 +510,14 @@ int main(int argc, char **argv)
     glutDisplayFunc(displayGir);
     glutReshapeFunc(winReshapeFcn);
     init();
-    /*
+    
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
     glutInitWindowPosition(800, 50);
     glutInitWindowSize(winWidth, winHeight);
-    window_2 = glutCreateWindow("Primitive Garbage Information Recollector w/Triangles 👾");
+    window_2 = glutCreateWindow("Primitive Garbage Information Recollector Deformed 👾");
     glutDisplayFunc(displayDeformedGir);
     glutReshapeFunc(winReshapeFcn);
     init();
-    */
     glutMainLoop();
 
     return 0;
