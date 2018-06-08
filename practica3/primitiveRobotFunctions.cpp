@@ -346,7 +346,6 @@ void drawFoot()
     glEnd();
 }
 
-// TO-DO separate each part of the robot and use functions to draw it
 // Main display function, to draw and apply transformations to polygons
 void displayGir(void)
 {
