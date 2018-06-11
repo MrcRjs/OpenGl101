@@ -15,11 +15,83 @@ void init()
     glLoadIdentity();
 }
 
-void display(void)
+void display1(void)
 {
     glClear(GL_COLOR_BUFFER_BIT);
 
-    gluLookAt(0.0f, 0.0f, 5.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+    gluLookAt(0.0f, 0.0f, 5.0f,
+            0.0f, 0.0f, 0.0f,
+            0.0f, 1.0f, 0.0f);
+    glutWireTeapot(0.5);
+
+    glFlush();
+
+    glutSwapBuffers();
+    glFlush();
+}
+void display4(void)
+{
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    gluLookAt(0.0f, 0.0f, -5.0f,
+              0.0f, 0.0f, 0.0f,
+              0.0f, 1.0f, 0.0f);
+    glutWireTeapot(0.5);
+
+    glFlush();
+
+    glutSwapBuffers();
+    glFlush();
+}
+void display2(void)
+{
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    gluLookAt(5.0f, 0.0f, 0.0f,
+              0.0f, 0.0f, 0.0f,
+              0.0f, 1.0f, 0.0f);
+    glutWireTeapot(0.5);
+
+    glFlush();
+
+    glutSwapBuffers();
+    glFlush();
+}
+void display5(void)
+{
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    gluLookAt(-5.0f, 0.0f, 0.0f,
+              0.0f, 0.0f, 0.0f,
+              0.0f, 1.0f, 0.0f);
+    glutWireTeapot(0.5);
+
+    glFlush();
+
+    glutSwapBuffers();
+    glFlush();
+}
+void display3(void)
+{
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    gluLookAt(0.0f, 5.0f, 0.0f,
+              0.0f, 0.0f, 0.0f,
+              0.0f, 0.0f, 1.0f);
+    glutWireTeapot(0.5);
+
+    glFlush();
+
+    glutSwapBuffers();
+    glFlush();
+}
+void display6(void)
+{
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    gluLookAt(0.0f, -5.0f, 0.0f,
+              0.0f, 0.0f, 0.0f,
+              0.0f, 0.0f, 1.0f);
     glutWireTeapot(0.5);
 
     glFlush();
@@ -61,14 +133,49 @@ int main(int argc, char **argv)
 
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
 
+    int w1, w2, w3, w4, w5, w6;
+
     glutInitWindowSize(400, 400);
     glutInitWindowPosition(10, 50);
-    glutCreateWindow("Objetos GLUT y Proyecciones");
-    glutDisplayFunc(display);
+    w1 = glutCreateWindow("Anterior");
+    glutDisplayFunc(display1);
     glutReshapeFunc(winReshapeFcn);
-
     init();
 
+    glutInitWindowSize(400, 400);
+    glutInitWindowPosition(410, 50);
+    w2 = glutCreateWindow("Lateral Derecho");
+    glutDisplayFunc(display2);
+    glutReshapeFunc(winReshapeFcn);
+    init();
+    
+    glutInitWindowSize(400, 400);
+    glutInitWindowPosition(810, 50);
+    w3 = glutCreateWindow("Superior");
+    glutDisplayFunc(display3);
+    glutReshapeFunc(winReshapeFcn);
+    init();
+
+    glutInitWindowSize(400, 400);
+    glutInitWindowPosition(10, 500);
+    w4 = glutCreateWindow("Posterior");
+    glutDisplayFunc(display4);
+    glutReshapeFunc(winReshapeFcn);
+    init();
+
+    glutInitWindowSize(400, 400);
+    glutInitWindowPosition(410, 500);
+    w5 = glutCreateWindow("Lateral Izquierdo");
+    glutDisplayFunc(display5);
+    glutReshapeFunc(winReshapeFcn);
+    init();
+
+    glutInitWindowSize(400, 400);
+    glutInitWindowPosition(810, 500);
+    w6 = glutCreateWindow("Inferior");
+    glutDisplayFunc(display6);
+    glutReshapeFunc(winReshapeFcn);
+    init();
     glutMainLoop();
 
     return 0;
