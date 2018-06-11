@@ -21,7 +21,7 @@ void display1(void)
 
     gluLookAt(0.0f, 0.0f, 5.0f,
             0.0f, 0.0f, 0.0f,
-            0.0f, 1.0f, 0.0f);
+            1.0f, 1.0f, 0.0f);
     glutWireTeapot(0.5);
 
     glFlush();
@@ -35,7 +35,7 @@ void display4(void)
 
     gluLookAt(0.0f, 0.0f, -5.0f,
               0.0f, 0.0f, 0.0f,
-              0.0f, 1.0f, 0.0f);
+              1.0f, 1.0f, 0.0f);
     glutWireTeapot(0.5);
 
     glFlush();
@@ -49,7 +49,7 @@ void display2(void)
 
     gluLookAt(5.0f, 0.0f, 0.0f,
               0.0f, 0.0f, 0.0f,
-              0.0f, 1.0f, 0.0f);
+              0.0f, 1.0f, 1.0f);
     glutWireTeapot(0.5);
 
     glFlush();
@@ -63,7 +63,7 @@ void display5(void)
 
     gluLookAt(-5.0f, 0.0f, 0.0f,
               0.0f, 0.0f, 0.0f,
-              0.0f, 1.0f, 0.0f);
+              0.0f, 1.0f, 1.0f);
     glutWireTeapot(0.5);
 
     glFlush();
@@ -77,7 +77,7 @@ void display3(void)
 
     gluLookAt(0.0f, 5.0f, 0.0f,
               0.0f, 0.0f, 0.0f,
-              0.0f, 0.0f, 1.0f);
+              1.0f, 0.0f, 1.0f);
     glutWireTeapot(0.5);
 
     glFlush();
@@ -91,7 +91,7 @@ void display6(void)
 
     gluLookAt(0.0f, -5.0f, 0.0f,
               0.0f, 0.0f, 0.0f,
-              0.0f, 0.0f, 1.0f);
+              1.0f, 0.0f, 1.0f);
     glutWireTeapot(0.5);
 
     glFlush();
