@@ -1,4 +1,5 @@
 #include <GLUT/glut.h>
+#include <math.h>
 
 float aspect = 1.0f;
 
@@ -20,8 +21,8 @@ void display1(void)
     glClear(GL_COLOR_BUFFER_BIT);
 
     gluLookAt(0.0f, 0.0f, 5.0f,
-            0.0f, 0.0f, 0.0f,
-            1.0f, 1.0f, 0.0f);
+              0.0f, 0.0f, 0.0f,
+              (sqrt(2) / 2.0f), (sqrt(2) / 2.0f), 0.0f);
     glutWireTeapot(0.5);
 
     glFlush();
