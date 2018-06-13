@@ -2,7 +2,10 @@
 #include <GLUT/glut.h>
 #include <stdio.h>
 #include <string.h>
+#include <string>
 #include <math.h>
+
+using namespace std;
 
 // Keep screen 16:10 aspect ratio
 // 1440
@@ -17,9 +20,29 @@ GLfloat ywcMin = winHeight / 2 * -1, ywcMax = winWidth / 2;
 
 int nx, ny, alpha, beta, rz = 0;
 float sx, sy = 0;
-int tx, ty = 0; 
+int tx, ty = 0;
 
-void keypressed(unsigned char key, int x, int y) {
+typedef enum
+{
+    bgBlack,
+    bgWhite,
+    leftGreen,
+    leftRed,
+    leftPurple,
+    leftYellow,
+    rightGreen,
+    rightRed,
+    rightPurple,
+    rightYellow,
+} menuOpt;
+
+string leftLightGIRColor = "red";
+string rightLightGIRColor = "green";
+string bgColor = "white";
+
+    void
+    keypressed(unsigned char key, int x, int y)
+{
     switch(key) {
         case 'w': {
             ty += 1;
@@ -83,7 +106,7 @@ void onMotion(int x, int y)
     glutPostRedisplay();
 }
 
-// Used to scale 
+// Used to scale robot from unit squares from draft to pixels 
 const GLint SCALE = 20;
 
 void init(void)
@@ -91,31 +114,77 @@ void init(void)
     glClearColor(1.0, 1.0, 1.0, 0.0);
     //glPolygonMode(GL_FRONT, GL_LINE);
 }
-/*
-void creacionMenu(void)
+
+void onMenu(int opt)
 {
-    int menuSky, menuFig, menuMain;
+    switch (opt)
+    {
+    case bgBlack:
+        bgColor = "black";
+        break;
+    case bgWhite:
+        bgColor = "white";
+        break;
+    case leftGreen:
+        leftLightGIRColor = "green";
+        break;
+    case leftRed:
+        leftLightGIRColor = "red";
+        break;
+    case leftPurple:
+        leftLightGIRColor = "purple";
+        break;
+    case leftYellow:
+        leftLightGIRColor = "yellow";
+        break;
+    case rightGreen:
+        rightLightGIRColor = "green";
+        break;
+    case rightRed:
+        rightLightGIRColor = "red";
+        break;
+    case rightPurple:
+        rightLightGIRColor = "purple";
+        break;
+    case rightYellow:
+        rightLightGIRColor = "yellow";
+        break;
+    }
+    glutPostRedisplay();
+}
 
-    menuFig = glutCreateMenu(onMenu);
-    glutAddMenuEntry("ROJO -> claro", COLOR2);
-    glutAddMenuEntry("ROJO -> oscuro", COLOR3);
-    glutAddMenuEntry("VERDE -> claro", COLOR4);
-    glutAddMenuEntry("VERDE -> oscuro", COLOR5);
-    glutAddMenuEntry("AZUL -> claro", COLOR6);
-    glutAddMenuEntry("AZUL -> oscuro", COLOR7);
+void colorMenu(void)
+{
+    int GIRLeftMenu, GIRRightMenu, BgMenu, GIRMenu, MainMenu;
 
-    menuSky = glutCreateMenu(onMenu);
-    glutAddMenuEntry("Blanco", FONDO0);
-    glutAddMenuEntry("Negro", FONDO1);
+    GIRLeftMenu = glutCreateMenu(onMenu);
+    glutAddMenuEntry("Green", leftGreen);
+    glutAddMenuEntry("Red", leftRed);
+    glutAddMenuEntry("Purple", leftPurple);
+    glutAddMenuEntry("Yellow", leftYellow);
 
-    menuMain = glutCreateMenu(onMenu);
-    glutAddSubMenu("Color de Fondo", menuSky);
-    glutAddSubMenu("Color de Figuras", menuFig);
+    GIRRightMenu = glutCreateMenu(onMenu);
+    glutAddMenuEntry("Green", rightGreen);
+    glutAddMenuEntry("Red", rightRed);
+    glutAddMenuEntry("Purple", rightPurple);
+    glutAddMenuEntry("Yellow", rightYellow);
+
+    GIRMenu = glutCreateMenu(onMenu);
+    glutAddSubMenu("Left", GIRLeftMenu);
+    glutAddSubMenu("Right", GIRRightMenu);
+
+    BgMenu = glutCreateMenu(onMenu);
+    glutAddMenuEntry("Blanco", bgWhite);
+    glutAddMenuEntry("Negro", bgBlack);
+
+    MainMenu = glutCreateMenu(onMenu);
+    glutAddSubMenu("Background Color", BgMenu);
+    glutAddSubMenu("GIR color theme", GIRMenu);
 
     glutAttachMenu(GLUT_RIGHT_BUTTON);
 }
-*/
-void setColor(char *color)
+
+void setColor(string color)
 {
     /*
     GIR colors
@@ -131,34 +200,50 @@ void setColor(char *color)
     #E70039
     pink
     #E6B2F1
+    yellow
+    #ccff00
+    purple
+    #ba0be0
     */
-    if(strcmp(color, "metal") == 0)
+    if(color.compare("metal") == 0)
     {
         glColor3f(0.7f, 0.7f, 0.7f);
     }
-    else if (strcmp(color, "metal-shadow") == 0)
+    else if (color.compare("metal-shadow") == 0)
     {
         glColor3f(0.51f, 0.51f, 0.51f);
     }
-    else if (strcmp(color, "metal-light") == 0)
+    else if (color.compare("metal-light") == 0)
     {
         glColor3f(0.76f, 0.79f, 0.78f);
     }
-    else if (strcmp(color, "red") == 0)
+    else if (color.compare("red") == 0)
     {
         glColor3f(0.91f, 0.0f, 0.22f);
     }
-    else if (strcmp(color, "green") == 0)
+    else if (color.compare("green") == 0)
     {
         glColor3f(0.28f, 0.96f, 0.65f);
     }
-    else if (strcmp(color, "black") == 0)
+    else if (color.compare("black") == 0)
     {
         glColor3f(0.0f, 0.0f, 0.0f);
     }
-    else if (strcmp(color, "pink") == 0)
+    else if (color.compare("pink") == 0)
     {
         glColor3f(0.9f, 0.7f, 0.95f);
+    }
+    else if (color.compare("white") == 0)
+    {
+        glColor3f(1.0f, 1.0f, 1.0f);
+    }
+    else if (color.compare("purple") == 0)
+    {
+        glColor3f(0.73f, 0.04f, 0.88f);
+    }
+    else if (color.compare("yellow") == 0)
+    {
+        glColor3f(0.8f, 1.0f, 0.0f);
     }
 }
 
@@ -251,7 +336,7 @@ void drawHead()
     */
     // Left Eye
     glBegin(GL_TRIANGLES);
-    setColor("red");
+    setColor(leftLightGIRColor);
     glVertex2i(-6 * SCALE, 2.5 * SCALE);
     glVertex2i(-4.5 * SCALE, -2.5 * SCALE);
     glVertex2i(0 * SCALE, -1 * SCALE);
@@ -259,7 +344,7 @@ void drawHead()
 
     // Right Eye
     glBegin(GL_TRIANGLE_FAN);
-    setColor("green");
+    setColor(rightLightGIRColor);
     glVertex2i(4 * SCALE, -0.5 * SCALE);
     glVertex2i(3 * SCALE, 1.5 * SCALE);
     glVertex2i(2 * SCALE, 0.5 * SCALE);
@@ -323,14 +408,14 @@ void drawBody()
     glVertex2i(2.5 * SCALE, -3.5 * SCALE);
     glEnd();
     glBegin(GL_TRIANGLE_FAN);
-    setColor("red");
+    setColor(leftLightGIRColor);
     glVertex2i(-1.5 * SCALE, 2.5 * SCALE);
     glVertex2i(-1.5 * SCALE, -1.5 * SCALE);
     glVertex2i(0 * SCALE, -1.5 * SCALE);
     glVertex2i(0 * SCALE, 2.5 * SCALE);
     glEnd();
     glBegin(GL_TRIANGLE_FAN);
-    setColor("green");
+    setColor(rightLightGIRColor);
     glVertex2i(0 * SCALE, 2.5 * SCALE);
     glVertex2i(0 * SCALE, -1.5 * SCALE);
     glVertex2i(1.5 * SCALE, -1.5 * SCALE);
@@ -346,7 +431,7 @@ void drawLeftArm()
 
     // Shoulder Left
     glBegin(GL_TRIANGLE_FAN);
-    setColor("red");
+    setColor(leftLightGIRColor);
     glVertex2i(1.5 * SCALE, -5.5 * SCALE);
     glVertex2i(1.5 * SCALE, -6.5 * SCALE);
     glVertex2i(2.5 * SCALE, -6.5 * SCALE);
@@ -386,7 +471,7 @@ void drawRightArm()
 
     // Shoulder Right
     glBegin(GL_TRIANGLE_FAN);
-    setColor("green");
+    setColor(rightLightGIRColor);
     glVertex2i(-1 * SCALE, 3.5 * SCALE);
     glVertex2i(-1 * SCALE, 2.5 * SCALE);
     glVertex2i(0 * SCALE, 2.5 * SCALE);
@@ -438,7 +523,16 @@ void displayGir(void)
 {
     glClear(GL_COLOR_BUFFER_BIT);
     glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
+
+    if(bgColor.compare("white") == 0) {
+        glClearColor(1.0, 1.0, 1.0, 0.0);
+        glutPostRedisplay();
+    }
+    else if (bgColor.compare("black") == 0)
+    {
+        glClearColor(0.0, 0.0, 0.0, 0.0);
+        glutPostRedisplay();
+    }
 
     glPushMatrix();
     glLoadIdentity();
@@ -491,7 +585,7 @@ void testDisplay(void)
         Draw axes
     */
     glLineWidth(1.0);
-    setColor("red");
+    setColor(leftLightGIRColor);
     glBegin(GL_LINES);
     glVertex2i(-1000, 0);
     glVertex2i(1000, 0);
@@ -538,7 +632,7 @@ int main(int argc, char **argv)
 {
     glutInit(&argc, argv);
 
-    GLint window_1, window_2;
+    GLint window_1;
 
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
     glutInitWindowPosition(10, 50);
@@ -547,17 +641,10 @@ int main(int argc, char **argv)
     glutKeyboardFunc(keypressed);
     glutMouseFunc(onMouse);
     glutMotionFunc(onMotion);
+    colorMenu();
     glutDisplayFunc(displayGir);
     glutReshapeFunc(winReshapeFcn);
     init();
-    /*
-    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
-    glutInitWindowPosition(800, 50);
-    glutInitWindowSize(winWidth, winHeight);
-    window_2 = glutCreateWindow("Primitive Garbage Information Recollector Deformed 👾");
-    glutDisplayFunc(displayDeformedGir);
-    glutReshapeFunc(winReshapeFcn);
-    init();*/
     glutMainLoop();
 
     return 0;
