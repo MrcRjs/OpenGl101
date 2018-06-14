@@ -1,23 +1,6 @@
 #include <GLUT/glut.h>
 #include <stdlib.h>
 
-void dibujar();
-
-int main(int argc, char** argv)
-{
-    glutInit(&argc, argv);
-    glutInitWindowSize(800, 500);
-    glutInitWindowPosition(100, 100);
-    glutInitDisplayMode(GLUT_RGB | GLUT_SINGLE | GLUT_DEPTH);
-	glutCreateWindow(argv[0]);
-    glutDisplayFunc(dibujar);
-    glutSetWindowTitle("Bad King 1.0 👑");
-
-    glutMainLoop();
-
-	return 0;
-}
-
 void dibujar(void)
 {
     glClear(GL_COLOR_BUFFER_BIT);
@@ -30,4 +13,20 @@ void dibujar(void)
     glVertex3f(0.0, 1, 0.0);
     glutSwapBuffers();
     glEnd();
+    glFlush();
+}
+
+int main(int argc, char **argv)
+{
+    glutInit(&argc, argv);
+    glutInitWindowSize(500, 500);
+    glutInitWindowPosition(100, 100);
+    glutInitDisplayMode(GLUT_RGB | GLUT_SINGLE | GLUT_DEPTH);
+    glutCreateWindow(argv[0]);
+    glutDisplayFunc(dibujar);
+    glutSetWindowTitle("Bad King 1.0 👑");
+
+    glutMainLoop();
+
+    return 0;
 }
