@@ -30,6 +30,7 @@ void resize(int w, int h)
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 }
+
 void keyInput(unsigned char key, int x, int y)
 {
     switch (key)
@@ -44,15 +45,16 @@ void keyInput(unsigned char key, int x, int y)
 
 int main(int argc, char **argv)
 {
-glutInit(&argc, argv);
-glutInitDisplayMode(GLUT_SINGLE|GLUT_RGB);
-glutInitWindowSize(500, 500);
-glutInitWindowPosition(100, 100);
-glutCreateWindow("Cuadrado");
-setup();
-glutDisplayFunc(drawScene);
-glutReshapeFunc(resize);
-glutKeyboardFunc(keyInput);
-glutMainLoop();
-return 0;
+    glutInit(&argc, argv);
+    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+    glutInitWindowSize(500, 500);
+    glutInitWindowPosition(10, 10);
+    glutCreateWindow("Cuadrado");
+    setup();
+    glutDisplayFunc(drawScene);
+    glutReshapeFunc(resize);
+    glutKeyboardFunc(keyInput);
+    glutMainLoop();
+
+    return 0;
 }

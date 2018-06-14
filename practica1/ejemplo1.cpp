@@ -6,67 +6,67 @@ GLint window_1, window_2;
 
 void init(void)
 {
-	glClearColor(1.0, 1.0, 1.0, 0.0);       // DEFINE COLOR DE FONDO
-	glColor3f(0.0f, 1.0f, 0.0f);            // DEFINE COLOR DE PUNTOS
-	glPointSize(8.0);                       // DEFINE TAMAÑO DE PUNTO
-	gluOrtho2D(0.0, 640.0, 0.0, 480.0); 
-	    // DEFINE VISTA (ORTOGONAL 2D)
-	glPolygonMode(GL_FRONT, GL_LINE);		// GL_POINT, GL_LINE, GL_FILL
+	glClearColor(1.0, 1.0, 1.0, 0.0); // DEFINE COLOR DE FONDO
+	glColor3f(0.0f, 1.0f, 0.0f);	  // DEFINE COLOR DE PUNTOS
+	glPointSize(8.0);				  // DEFINE TAMAÑO DE PUNTO
+	gluOrtho2D(0.0, 640.0, 0.0, 480.0);
+	// DEFINE VISTA (ORTOGONAL 2D)
+	glPolygonMode(GL_FRONT, GL_LINE); // GL_POINT, GL_LINE, GL_FILL
 }
 
 void display(void)
 {
-	glClear(GL_COLOR_BUFFER_BIT);   // LIMPIA PANTALLA
+	glClear(GL_COLOR_BUFFER_BIT); // LIMPIA PANTALLA
 
-	glBegin(GL_POINTS);             // DIBUJA 3 PUNTOS
-		glVertex2i(100, 50);
-		glVertex2i(100, 130);
-		glVertex2i(150, 130);
-    glEnd();
+	glBegin(GL_POINTS); // DIBUJA 3 PUNTOS
+	glVertex2i(100, 50);
+	glVertex2i(100, 130);
+	glVertex2i(150, 130);
+	glEnd();
 
 	glBegin(GL_LINES);
-		glLineWidth(10.0);
-		glColor3f(1.0f, 0.0f, 0.0f);
-		glVertex2i(100, 50);
-		glVertex2i(100, 130);
+	glLineWidth(10.0);
+	glColor3f(1.0f, 0.0f, 0.0f);
+	glVertex2i(100, 50);
+	glVertex2i(100, 130);
 
-		glVertex2i(100, 130);
-		glVertex2i(150, 130);
+	glVertex2i(100, 130);
+	glVertex2i(150, 130);
 
-		glVertex2i(150, 130);
-		glVertex2i(100, 50);
+	glVertex2i(150, 130);
+	glVertex2i(100, 50);
 	glEnd();
 
 	glBegin(GL_LINE_STRIP);
-		glColor3f(0.0f, 0.0f, 1.0f);
-		glVertex2i(400, 50);
-		glVertex2i(400, 130);
-		glVertex2i(300, 130);
-		glVertex2i(300, 50);
-		glVertex2i(400, 50);
+	glColor3f(0.0f, 0.0f, 1.0f);
+	glVertex2i(400, 50);
+	glVertex2i(400, 130);
+	glVertex2i(300, 130);
+	glVertex2i(300, 50);
+	glVertex2i(400, 50);
 	glEnd();
 
 	glBegin(GL_LINE_LOOP);
-		glColor3f(0.0f, 0.7f, 0.7f);
-		for (float i = 0.f; i < 2 * M_PI; i += M_PI / 20.f)
-		{
-			glVertex2f(350 + 40 * cos(i), 300 + 40 * sin(i));
-		}
+	glColor3f(0.0f, 0.7f, 0.7f);
+	for (float i = 0.f; i < 2 * M_PI; i += M_PI / 20.f)
+	{
+		glVertex2f(350 + 40 * cos(i), 300 + 40 * sin(i));
+	}
 	glEnd();
 
 	glBegin(GL_TRIANGLES);
-		glColor3f(0.9f, 0.5f, 0.0f);
-		glVertex2i(100, 150);
-		glVertex2i(100, 230);
-		glVertex2i(150, 150);
+	glColor3f(0.9f, 0.5f, 0.0f);
+	glVertex2i(100, 150);
+	glVertex2i(100, 230);
+	glVertex2i(150, 150);
 	glEnd();
 
 	glBegin(GL_POLYGON);
-		glColor3f(0.8f, 0.8f, 0.8f);
-		glVertex2i(400, 150);
-		glVertex2i(400, 230);
-		glVertex2i(450, 230);
-		glVertex2i(450, 150);
+	glColor3f(0.8f, 0.8f, 0.8f);
+	glVertex2i(400, 150);
+	glVertex2i(400, 230);
+	glVertex2i(450, 230);
+	glVertex2i(450, 150);
 	glEnd();
 
 	glFlush(); // ENVIA TODA LA SALIDA A LA PANTALLA
@@ -129,13 +129,13 @@ void displayTriangles(void)
 	glFlush();
 }
 
-int main(int argc, char** argv)
+int main(int argc, char **argv)
 {
-    glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+	glutInit(&argc, argv);
+	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
 
-    glutInitWindowSize(640, 480);
-    glutInitWindowPosition(200, 100);
+	glutInitWindowSize(640, 480);
+	glutInitWindowPosition(200, 100);
 	glutDisplayFunc(display);
 
 	window_1 = glutCreateWindow(argv[0]);
@@ -148,7 +148,7 @@ int main(int argc, char** argv)
 	glutSetWindowTitle("Segundo ejemplo 🍷");
 	glutDisplayFunc(displayTriangles);
 
-    glutMainLoop();
+	glutMainLoop();
 
 	return 0;
 }
