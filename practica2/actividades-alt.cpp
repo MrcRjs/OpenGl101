@@ -1,7 +1,7 @@
 #include <GLUT/glut.h>
 
 // Tamaño inicial de la ventana de despliegue
-GLsizei winWidth=900, winHeight=600;
+GLsizei winWidth = 900, winHeight = 600;
 
 // rango para las coordenadas de visión del mundo
 //GLfloat xwcMin=0.0, xwcMax=1200.0;
@@ -13,26 +13,23 @@ GLfloat ywcMin = 0.0, ywcMax = 600.0;
 //Se define un objeto Punto (x, y) de tipo flotante
 class wcPt2D
 {
-	public:
-		GLfloat x,y;
+  public:
+	GLfloat x, y;
 };
-
-
-// DIBUJADO DE FIGURA(S) GEOMÉTRICA(S) ------------------------------------------------------------------------------
 
 void init(void)
 {
-	glClearColor(1.0,1.0,1.0,0.0);
+	glClearColor(1.0, 1.0, 1.0, 0.0);
 }
 
 // CREACION DE LA FIGURA
-void triangle(wcPt2D * verts)
+void triangle(wcPt2D *verts)
 {
 	GLint k;
 
 	glBegin(GL_TRIANGLES);
-	  for(k=0;k<3;k++)
-		  glVertex2f(verts[k].x,verts[k].y);
+	for (k = 0; k < 3; k++)
+		glVertex2f(verts[k].x, verts[k].y);
 	glEnd();
 }
 
@@ -92,9 +89,9 @@ int main(int argc, char **argv)
 {
 	glutInit(&argc, argv);
 
-	glutInitDisplayMode(GLUT_SINGLE|GLUT_RGB);
+	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
 	glutInitWindowPosition(50, 50);
-	glutInitWindowSize(winWidth,winHeight);
+	glutInitWindowSize(winWidth, winHeight);
 	glutCreateWindow("OpenGL Matrix Transformations 🔥");
 
 	init();

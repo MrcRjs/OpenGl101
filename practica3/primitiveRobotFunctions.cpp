@@ -19,7 +19,7 @@ class wcPt2D
     GLfloat x, y;
 };
 
-// Used to scale 
+// Used to scale
 const GLint SCALE = 20;
 
 void init(void)
@@ -45,7 +45,7 @@ void setColor(char *color)
     pink
     #E6B2F1
     */
-    if(strcmp(color, "metal") == 0)
+    if (strcmp(color, "metal") == 0)
     {
         glColor3f(0.7f, 0.7f, 0.7f);
     }
@@ -509,7 +509,7 @@ int main(int argc, char **argv)
     glutDisplayFunc(displayGir);
     glutReshapeFunc(winReshapeFcn);
     init();
-    
+
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
     glutInitWindowPosition(800, 50);
     glutInitWindowSize(winWidth, winHeight);

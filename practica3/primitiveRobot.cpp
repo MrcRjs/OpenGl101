@@ -19,7 +19,7 @@ class wcPt2D
     GLfloat x, y;
 };
 
-// Used to scale 
+// Used to scale
 const GLint SCALE = 20;
 
 void init(void)
@@ -45,7 +45,7 @@ void setColor(char *color)
     pink
     #E6B2F1
     */
-    if(strcmp(color, "metal") == 0)
+    if (strcmp(color, "metal") == 0)
     {
         glColor3f(0.7f, 0.7f, 0.7f);
     }
@@ -159,7 +159,7 @@ void displayGir(void)
     glVertex2i(2.5 * SCALE, 15 * SCALE);
     glVertex2i(2.5 * SCALE, 15.5 * SCALE);
     glEnd();
-    
+
     /*
     Face
     */
