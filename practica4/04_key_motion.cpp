@@ -1,6 +1,6 @@
 #include <GLUT/glut.h>
 
-// definici�n e inicializaci�n de variables globales
+// definición e inicialización de variables globales
 void init(void)
 {
 	glMatrixMode (GL_PROJECTION);
@@ -30,7 +30,7 @@ void reshape(int w, int h)
     glLoadIdentity();
 }
 
-// partimos de la posici�n x= y z=o en el mundo
+// partimos de la posición x= y z=o en el mundo
 GLfloat xpos=0, zpos=0;
 
 // rutinas de render
@@ -95,7 +95,7 @@ int main(int argc, char **argv)
 {
     int id;
 
-    glutInit(&argc, argv); // definici�n t�pica de una ventana
+    glutInit(&argc, argv); // definición tópica de una ventana
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
     glutInitWindowSize(500, 500);
     glutInitWindowPosition(0,0);
