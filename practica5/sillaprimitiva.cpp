@@ -240,7 +240,6 @@ void onMotion(int x, int y)
 	glutPostRedisplay();
 }
 
-
 void ControlTeclado(int Key, int x, int y)
 {
 	switch (Key)
