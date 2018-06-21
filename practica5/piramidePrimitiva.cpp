@@ -223,7 +223,7 @@ void display(void)
     glVertex3fv(vi[0]);
     glEnd();
 
-    // Inferior
+    // Inferiorz
     glBegin(GL_QUADS);
     float vbase[3][3] = {-0.5f, -0.5f, 0.5f, 0.5f, -0.5f, 0.5f, 0.5f, -0.5f, -0.5f};
     glNormal3fv(calculateNormal(vbase[0], vbase[1], vbase[2]));
