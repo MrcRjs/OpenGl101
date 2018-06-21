@@ -378,7 +378,7 @@ int main(int argc, char **argv)
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
     glutInitWindowSize(w, h);
     glutInitWindowPosition(10, 10);
-    glutCreateWindow("Figuras 3D");
+    glutCreateWindow("Piramide Primitiva 🤘🏼");
     init();
     glutDisplayFunc(display);
     glutSpecialFunc(ControlTeclado);
