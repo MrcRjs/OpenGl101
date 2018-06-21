@@ -79,12 +79,10 @@ void drawCube()
 {
 	// Frente
 	glBegin(GL_QUADS);
-	//glNormal3d(0.0f, 0.0f, 1.0f);
 	float vf[3][3] = {
 		-0.5f, -0.5f, 0.5f,
 		0.5f, -0.5f, 0.5f,
 		0.5f, 0.5f, 0.5f};
-
 	glNormal3fv(NZ.calculateNormal(vf[0], vf[1], vf[2]));
 	glVertex3d(-0.5f, -0.5f, 0.5f);
 	glVertex3d(0.5f, -0.5f, 0.5f);
@@ -93,7 +91,11 @@ void drawCube()
 	glEnd();
 	// Posterior
 	glBegin(GL_QUADS);
-	glNormal3d(0.0f, 0.0f, -1.0f);
+	float vp[3][3] = {
+		0.0f, 0.0f, -1.0f,
+		-0.5f, 0.5f, -0.5f,
+		0.5f, 0.5f, -0.5f};
+	glNormal3fv(NZ.calculateNormal(vp[0], vp[1], vp[2]));
 	glVertex3d(-0.5f, 0.5f, -0.5f);
 	glVertex3d(0.5f, 0.5f, -0.5f);
 	glVertex3d(0.5f, -0.5f, -0.5f);
@@ -102,7 +104,11 @@ void drawCube()
 
 	// Derecha
 	glBegin(GL_QUADS);
-	glNormal3d(1.0f, 0.0f, 0.0f);
+	float vd[3][3] = {
+		0.5f, -0.5f, 0.5f,
+		0.5f, -0.5f, -0.5f,
+		0.5f, 0.5f, -0.5f};
+	glNormal3fv(NZ.calculateNormal(vd[0], vd[1], vd[2]));
 	glVertex3d(0.5f, -0.5f, 0.5f);
 	glVertex3d(0.5f, -0.5f, -0.5f);
 	glVertex3d(0.5f, 0.5f, -0.5f);
@@ -110,7 +116,11 @@ void drawCube()
 	glEnd();
 	// Izquierda
 	glBegin(GL_QUADS);
-	glNormal3d(-1.0f, 0.0f, 0.0f);
+	float vi[3][3] = {
+		-0.5f, 0.5f, 0.5f,
+		-0.5f, 0.5f, -0.5f,
+		-0.5f, -0.5f, -0.5f};
+	glNormal3fv(NZ.calculateNormal(vi[0], vi[1], vi[2]));
 	glVertex3d(-0.5f, 0.5f, 0.5f);
 	glVertex3d(-0.5f, 0.5f, -0.5f);
 	glVertex3d(-0.5f, -0.5f, -0.5f);
@@ -119,7 +129,11 @@ void drawCube()
 
 	// Superior
 	glBegin(GL_QUADS);
-	glNormal3d(0.0f, 1.0f, 0.0f);
+	float vu[3][3] = {
+		-0.5f, 0.5f, 0.5f,
+		0.5f, 0.5f, 0.5f,
+		0.5f, 0.5f, -0.5f};
+	glNormal3fv(NZ.calculateNormal(vu[0], vu[1], vu[2]));
 	glVertex3d(-0.5f, 0.5f, 0.5f);
 	glVertex3d(0.5f, 0.5f, 0.5f);
 	glVertex3d(0.5f, 0.5f, -0.5f);
@@ -127,7 +141,11 @@ void drawCube()
 	glEnd();
 	// Inferior
 	glBegin(GL_QUADS);
-	glNormal3d(0.0f, -1.0f, 0.0f);
+	float va[3][3] = {
+		-0.5f, -0.5f, -0.5f,
+		0.5f, -0.5f, -0.5f,
+		0.5f, -0.5f, 0.5f};
+	glNormal3fv(NZ.calculateNormal(va[0], va[1], va[2]));
 	glVertex3d(-0.5f, -0.5f, -0.5f);
 	glVertex3d(0.5f, -0.5f, -0.5f);
 	glVertex3d(0.5f, -0.5f, 0.5f);
@@ -137,44 +155,45 @@ void drawCube()
 
 void drawChair()
 {
-	//pata trasera izquierda
+	// Pata trasera izquierda
 	glPushMatrix();
-	glTranslatef(-0.5, -0.5, -0.5);
-	glScalef(0.2, 1.0, 0.2);
-	drawCube();
-	glPopMatrix();
-	//pata trasera derecha
-	glPushMatrix();
-	glTranslatef(0.5, -0.5, -0.5);
-	glScalef(0.2, 1.0, 0.2);
+	glTranslatef(-0.5f, -0.5f, -0.5);
+	glScalef(0.2f, 1.0f, 0.2);
 	drawCube();
 	glPopMatrix();
 
-	//pata delantera izquierda
+	// Pata trasera derecha
 	glPushMatrix();
-	glTranslatef(-0.5, -0.5, 0.5);
-	glScalef(0.2, 1.0, 0.2);
+	glTranslatef(0.5f, -0.5f, -0.5);
+	glScalef(0.2f, 1.0f, 0.2);
 	drawCube();
 	glPopMatrix();
 
-	//pata delantera derecha
+	// Pata delantera izquierda
 	glPushMatrix();
-	glTranslatef(0.5, -0.5, 0.5);
-	glScalef(0.2, 1.0, 0.2);
+	glTranslatef(-0.5f, -0.5f, 0.5);
+	glScalef(0.2f, 1.0f, 0.2);
+	drawCube();
+	glPopMatrix();
+
+	// Pata delantera derecha
+	glPushMatrix();
+	glTranslatef(0.5f, -0.5f, 0.5);
+	glScalef(0.2f, 1.0f, 0.2);
 	drawCube();
 	glPopMatrix();
 
 	// Asiento
 	glPushMatrix();
-	glTranslatef(0.0, 0.1, 0.0);
-	glScalef(1.2, 0.2, 1.2);
+	glTranslatef(0.0f, 0.1f, 0.0);
+	glScalef(1.2f, 0.2f, 1.2);
 	drawCube();
 	glPopMatrix();
 
 	// Respaldo
 	glPushMatrix();
-	glTranslatef(0.0, 0.7, -0.5);
-	glScalef(1.2, 1.0, 0.2);
+	glTranslatef(0.0f, 0.7f, -0.5);
+	glScalef(1.2f, 1.0f, 0.2);
 	drawCube();
 	glPopMatrix();
 }
@@ -206,8 +225,8 @@ void display(void)
 
 	glEnable(GL_CULL_FACE);
 
-	glLoadIdentity();
 	glPushMatrix();
+	glLoadIdentity();
 
 	glTranslatef(xpos, ypos, 0);
 	glRotatef(alpha, 1.0f, 0.0f, 0.0f);
