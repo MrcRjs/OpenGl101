@@ -2,12 +2,15 @@
 //OBJETOS 3D - ILUMINACION
 #include <stdio.h>
 #include <GLUT/glut.h>
+#include <stdlib.h>
 
 using namespace std;
 
 #include "../utils/normalizer.h"
 
 Normalizer NZ;
+
+GLuint texture_id[4];
 
 //Matriz de colores
 float colores[4][3] =
@@ -43,6 +46,81 @@ void luzAmbiental(void)
 	glLightfv(GL_LIGHT0, GL_AMBIENT, l_a_color);
 	glEnable(GL_LIGHT0);
 	glutPostRedisplay();
+}
+
+int LoadBMP(char *filename, int tex_name)
+{
+#define SAIR                \
+	{                       \
+		fclose(fp_archivo); \
+		return -1;          \
+	}
+#define CTOI(C) (*(int *)&C)
+
+	GLubyte *image;
+	GLubyte Header[0x54];
+	GLuint DataPos, imageSize;
+	GLsizei Width, Height;
+
+	int nb = 0;
+
+	// Abre un archivo y efectua la lectura del encabezado del archivo BMP
+	FILE *fp_archivo = fopen(filename, "rb");
+	if (!fp_archivo)
+		return -1;
+	if (fread(Header, 1, 0x36, fp_archivo) != 0x36)
+		SAIR;
+	if (Header[0] != 'B' || Header[1] != 'M')
+		SAIR;
+	if (CTOI(Header[0x1E]) != 0)
+		SAIR;
+	if (CTOI(Header[0x1C]) != 24)
+		SAIR;
+
+	// Recupera los atributos de la altura y ancho de la imagen
+
+	Width = CTOI(Header[0x12]);
+	Height = CTOI(Header[0x16]);
+	(CTOI(Header[0x0A]) == 0) ? (DataPos = 0x36) : (DataPos = CTOI(Header[0x0A]));
+
+	imageSize = Width * Height * 3;
+
+	// Llama a la imagen
+	image = (GLubyte *)malloc(imageSize);
+	int retorno;
+	retorno = fread(image, 1, imageSize, fp_archivo);
+
+	if (retorno != imageSize)
+	{
+		free(image);
+		SAIR;
+	}
+
+	// Invierte los valores de R y B
+	int t, i;
+
+	for (i = 0; i < imageSize; i += 3)
+	{
+		t = image[i];
+		image[i] = image[i + 2];
+		image[i + 2] = t;
+	}
+
+	// Tratamiento de textura para OpenGL
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MODULATE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MODULATE);
+
+	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+
+	// Manipulacion en memoria de la textura
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, Width, Height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+
+	fclose(fp_archivo);
+	free(image);
+	return 1;
 }
 
 void luzUno(void)
@@ -84,9 +162,13 @@ void drawCube()
 		0.5f, -0.5f, 0.5f,
 		0.5f, 0.5f, 0.5f};
 	glNormal3fv(NZ.calculateNormal(vf[0], vf[1], vf[2]));
+	glTexCoord2f(0, 0);
 	glVertex3d(-0.5f, -0.5f, 0.5f);
+	glTexCoord2f(1, 0);
 	glVertex3d(0.5f, -0.5f, 0.5f);
+	glTexCoord2f(1, 1);
 	glVertex3d(0.5f, 0.5f, 0.5f);
+	glTexCoord2f(-1, 1);
 	glVertex3d(-0.5f, 0.5f, 0.5f);
 	glEnd();
 	// Posterior
@@ -96,9 +178,13 @@ void drawCube()
 		-0.5f, 0.5f, -0.5f,
 		0.5f, 0.5f, -0.5f};
 	glNormal3fv(NZ.calculateNormal(vp[0], vp[1], vp[2]));
+	glTexCoord2f(-1, 1);
 	glVertex3d(-0.5f, 0.5f, -0.5f);
+	glTexCoord2f(1, 1);
 	glVertex3d(0.5f, 0.5f, -0.5f);
+	glTexCoord2f(1, -1);
 	glVertex3d(0.5f, -0.5f, -0.5f);
+	glTexCoord2f(-1, -1);
 	glVertex3d(-0.5f, -0.5f, -0.5f);
 	glEnd();
 
@@ -109,9 +195,13 @@ void drawCube()
 		0.5f, -0.5f, -0.5f,
 		0.5f, 0.5f, -0.5f};
 	glNormal3fv(NZ.calculateNormal(vd[0], vd[1], vd[2]));
+	glTexCoord3d(1, -1, 1);
 	glVertex3d(0.5f, -0.5f, 0.5f);
+	glTexCoord3d(1, -1, -1);
 	glVertex3d(0.5f, -0.5f, -0.5f);
+	glTexCoord3d(1, 1, -1);
 	glVertex3d(0.5f, 0.5f, -0.5f);
+	glTexCoord3d(1, 1, 1);
 	glVertex3d(0.5f, 0.5f, 0.5f);
 	glEnd();
 	// Izquierda
@@ -121,9 +211,13 @@ void drawCube()
 		-0.5f, 0.5f, -0.5f,
 		-0.5f, -0.5f, -0.5f};
 	glNormal3fv(NZ.calculateNormal(vi[0], vi[1], vi[2]));
+	glTexCoord2f(-1, 1);
 	glVertex3d(-0.5f, 0.5f, 0.5f);
+	glTexCoord2f(-1, 1);
 	glVertex3d(-0.5f, 0.5f, -0.5f);
+	glTexCoord2f(-1, -1);
 	glVertex3d(-0.5f, -0.5f, -0.5f);
+	glTexCoord2f(-1, -1);
 	glVertex3d(-0.5f, -0.5f, 0.5f);
 	glEnd();
 
@@ -134,9 +228,13 @@ void drawCube()
 		0.5f, 0.5f, 0.5f,
 		0.5f, 0.5f, -0.5f};
 	glNormal3fv(NZ.calculateNormal(vu[0], vu[1], vu[2]));
+	glTexCoord3f(-1, 1, 1);
 	glVertex3d(-0.5f, 0.5f, 0.5f);
+	glTexCoord3f(1, 1, 1);
 	glVertex3d(0.5f, 0.5f, 0.5f);
+	glTexCoord3f(1, 1, -1);
 	glVertex3d(0.5f, 0.5f, -0.5f);
+	glTexCoord3f(-1, 1, -1);
 	glVertex3d(-0.5f, 0.5f, -0.5f);
 	glEnd();
 	// Inferior
@@ -151,6 +249,12 @@ void drawCube()
 	glVertex3d(0.5f, -0.5f, 0.5f);
 	glVertex3d(-0.5f, -0.5f, 0.5f);
 	glEnd();
+
+	glEnable(GL_TEXTURE_2D); //
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+	glGenTextures(2, texture_id);
+	glBindTexture(GL_TEXTURE_2D, texture_id[0]);
+	LoadBMP("madera.bmp", 0);
 }
 
 void drawChair()
