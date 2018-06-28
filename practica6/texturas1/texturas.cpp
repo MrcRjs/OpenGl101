@@ -18,7 +18,6 @@ int  LoadBMP(char *filename, int tex_name)
 
     int nb = 0;
 
-
     // Abre un archivo y efectua la lectura del encabezado del archivo BMP
     FILE * fp_archivo = fopen(filename,"rb");
     if (!fp_archivo)
@@ -77,6 +76,8 @@ int  LoadBMP(char *filename, int tex_name)
     free (image);
     return 1;
  }
+
+
 void onMouse(int button, int state, int x, int y)
 {
 	if ( (button == GLUT_LEFT_BUTTON) & (state == GLUT_DOWN) ) {

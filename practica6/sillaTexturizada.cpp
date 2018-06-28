@@ -155,13 +155,14 @@ void luzTres(void)
 
 void drawCube()
 {
+	glEnable(GL_NORMALIZE);
 	// Frente
 	glBegin(GL_QUADS);
 	float vf[3][3] = {
 		-0.5f, -0.5f, 0.5f,
 		0.5f, -0.5f, 0.5f,
 		0.5f, 0.5f, 0.5f};
-	glNormal3fv(NZ.calculateNormal(vf[0], vf[1], vf[2]));
+	//glNormal3fv(NZ.calculateNormal(vf[0], vf[1], vf[2]));
 	glTexCoord2f(0, 0);
 	glVertex3d(-0.5f, -0.5f, 0.5f);
 	glTexCoord2f(1, 0);
@@ -177,7 +178,7 @@ void drawCube()
 		0.0f, 0.0f, -1.0f,
 		-0.5f, 0.5f, -0.5f,
 		0.5f, 0.5f, -0.5f};
-	glNormal3fv(NZ.calculateNormal(vp[0], vp[1], vp[2]));
+	//glNormal3fv(NZ.calculateNormal(vp[0], vp[1], vp[2]));
 	glTexCoord2f(-1, 1);
 	glVertex3d(-0.5f, 0.5f, -0.5f);
 	glTexCoord2f(1, 1);
@@ -194,7 +195,7 @@ void drawCube()
 		0.5f, -0.5f, 0.5f,
 		0.5f, -0.5f, -0.5f,
 		0.5f, 0.5f, -0.5f};
-	glNormal3fv(NZ.calculateNormal(vd[0], vd[1], vd[2]));
+	//glNormal3fv(NZ.calculateNormal(vd[0], vd[1], vd[2]));
 	glTexCoord3d(1, -1, 1);
 	glVertex3d(0.5f, -0.5f, 0.5f);
 	glTexCoord3d(1, -1, -1);
@@ -210,7 +211,7 @@ void drawCube()
 		-0.5f, 0.5f, 0.5f,
 		-0.5f, 0.5f, -0.5f,
 		-0.5f, -0.5f, -0.5f};
-	glNormal3fv(NZ.calculateNormal(vi[0], vi[1], vi[2]));
+	//glNormal3fv(NZ.calculateNormal(vi[0], vi[1], vi[2]));
 	glTexCoord2f(-1, 1);
 	glVertex3d(-0.5f, 0.5f, 0.5f);
 	glTexCoord2f(-1, 1);
@@ -227,7 +228,7 @@ void drawCube()
 		-0.5f, 0.5f, 0.5f,
 		0.5f, 0.5f, 0.5f,
 		0.5f, 0.5f, -0.5f};
-	glNormal3fv(NZ.calculateNormal(vu[0], vu[1], vu[2]));
+	//glNormal3fv(NZ.calculateNormal(vu[0], vu[1], vu[2]));
 	glTexCoord3f(-1, 1, 1);
 	glVertex3d(-0.5f, 0.5f, 0.5f);
 	glTexCoord3f(1, 1, 1);
@@ -243,7 +244,7 @@ void drawCube()
 		-0.5f, -0.5f, -0.5f,
 		0.5f, -0.5f, -0.5f,
 		0.5f, -0.5f, 0.5f};
-	glNormal3fv(NZ.calculateNormal(va[0], va[1], va[2]));
+	//glNormal3fv(NZ.calculateNormal(va[0], va[1], va[2]));
 	glVertex3d(-0.5f, -0.5f, -0.5f);
 	glVertex3d(0.5f, -0.5f, -0.5f);
 	glVertex3d(0.5f, -0.5f, 0.5f);

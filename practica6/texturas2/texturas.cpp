@@ -21,7 +21,6 @@ int  LoadBMP(char *filename)
 
     int nb = 0;
     
-    
     // Abre un archivo y efectua la lectura del encabezado del archivo BMP
     FILE * fp_arquivo = fopen(filename,"rb");
     if (!fp_arquivo) 
@@ -65,7 +64,6 @@ int  LoadBMP(char *filename)
      } 
 
     // Tratamiento de textura para OpenGL
-
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);
@@ -121,7 +119,6 @@ void init(void)
    glBindTexture ( GL_TEXTURE_2D, texture_id[0] );
    LoadBMP ("tenis.bmp");   
  
-
 }
 
 
