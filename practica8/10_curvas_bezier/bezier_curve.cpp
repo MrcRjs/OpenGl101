@@ -81,8 +81,8 @@ void bezier(wcPt3D *ctrlPts, GLint nCtrlPts, GLint nBezCurvePts)
 
 void displayFcn(void)
 {
-	// Fija el n�mero de los puntos de control y el n�mero de las posiciones
-	// de la curva que se trazar�n a lo largo de la curva de Bezier
+	// Fija el número de los puntos de control y el número de las posiciones
+	// de la curva que se trazarán a lo largo de la curva de Bezier
 
 	GLint nCtrlPts = 4, nBezCurvePts = 1000;
 

@@ -3,12 +3,13 @@
 // numero de puntos de control para esta curva
 GLint nNumPoints = 4;
 
-GLfloat ctrlPoints[4][3] = {{-4.0f, 0.0f, 0.0f}, // punto final
-							//{ -6.0f, 4.0f, 0.0f},	// punto de control
-							{-2.0f, 2.0f, 0.0f},
-							{2.0f, -2.0f, 0.0f},
-							//{  6.0f, -4.0f, 0.0f},	// punto de control
-							{4.0f, 0.0f, 0.0f}}; // punto final
+GLfloat ctrlPoints[4][3] = {
+	{-4.0f, 0.0f, 0.0f}, // punto final
+	// { -6.0f, 4.0f, 0.0f}, // punto de control
+	{-2.0f, 2.0f, 0.0f},
+	{2.0f, -2.0f, 0.0f},
+	// {  6.0f, -4.0f, 0.0f}, // punto de control
+	{4.0f, 0.0f, 0.0f}}; // punto final
 
 // dibuja los puntos de control sobre la curva
 void DrawPoints(void)
@@ -33,7 +34,7 @@ void RenderScene(void)
 	glMap1f(GL_MAP1_VERTEX_3,   // tipo de datos generados
 			0.0f,				// rango inferior de u
 			100.0f,				// rango superior de u
-			3,					// distancia entre �los puntos en los datos
+			3,					// distancia entre los puntos en los datos
 			nNumPoints,			// numero de puntos de control
 			&ctrlPoints[0][0]); // arreglo de los puntos de control
 

@@ -26,7 +26,7 @@ void display(void)
 	glMap1f(GL_MAP1_VERTEX_3,   // tipo de datos generados
 			0.0f,				// rango inferior de u
 			100.0f,				// rango superior de u
-			3,					// distancia entre �los puntos en los datos
+			3,					// distancia entre los puntos en los datos
 			numPoints,			// numero de puntos de control
 			&ctrlPoints[0][0]); // arreglo de los puntos de control
 

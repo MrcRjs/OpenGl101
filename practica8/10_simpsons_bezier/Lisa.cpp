@@ -81,8 +81,8 @@ void bezier(wcPt3D *ctrlPts, GLint nCtrlPts, GLint nBezCurvePts)
 
 void displayFcn(void)
 {
-	// Fija el n�mero de los puntos de control y el n�mero de las posiciones
-	// de la curva que se trazar�n a lo largo de la curva de Bezier
+	// Fija el número de los puntos de control y el número de las posiciones
+	// de la curva que se trazarán a lo largo de la curva de Bezier
 
 	GLint nCtrlPts = 4, nBezCurvePts = 1000;
 
@@ -109,15 +109,15 @@ void displayFcn(void)
 	wcPt3D c37[4] = {{5.2, 3.4}, {5.0, 3.}, {5.0, 2.8}, {4.9, 2.5}};	//cuello
 
 	//Ojo 2 (Completo)
-	wcPt3D c38[4] = {{3.4, 7.2}, {3.4, 7.2}, {3.7, 7.0}, {3.7, 7.0}}; //Pesta�as
-	wcPt3D c39[4] = {{3.8, 8.0}, {3.8, 8.0}, {4.0, 7.7}, {4.0, 7.7}}; //Pesta�as
-	wcPt3D c40[4] = {{4.5, 8.3}, {4.5, 8.3}, {4.6, 8.0}, {4.6, 8.0}}; //Pesta�as
-	wcPt3D c41[4] = {{5.2, 7.9}, {5.2, 7.9}, {5.3, 8.2}, {5.3, 8.2}}; //Pesta�as
+	wcPt3D c38[4] = {{3.4, 7.2}, {3.4, 7.2}, {3.7, 7.0}, {3.7, 7.0}}; //Pestañas
+	wcPt3D c39[4] = {{3.8, 8.0}, {3.8, 8.0}, {4.0, 7.7}, {4.0, 7.7}}; //Pestañas
+	wcPt3D c40[4] = {{4.5, 8.3}, {4.5, 8.3}, {4.6, 8.0}, {4.6, 8.0}}; //Pestañas
+	wcPt3D c41[4] = {{5.2, 7.9}, {5.2, 7.9}, {5.3, 8.2}, {5.3, 8.2}}; //Pestañas
 	//Ojo 2
-	wcPt3D c42[4] = {{6.5, 7.75}, {6.5, 7.75}, {6.6, 8.05}, {6.6, 8.05}}; //Pesta�as
-	wcPt3D c43[4] = {{7.0, 7.6}, {7.0, 7.6}, {7.2, 7.9}, {7.2, 7.9}};	 //Pesta�as
-	wcPt3D c44[4] = {{7.4, 7.2}, {7.4, 7.2}, {7.7, 7.5}, {7.7, 7.5}};	 //Pesta�as
-	wcPt3D c45[4] = {{7.53, 6.7}, {7.53, 6.7}, {7.87, 6.9}, {7.87, 6.9}}; //Pesta�as
+	wcPt3D c42[4] = {{6.5, 7.75}, {6.5, 7.75}, {6.6, 8.05}, {6.6, 8.05}}; //Pestañas
+	wcPt3D c43[4] = {{7.0, 7.6}, {7.0, 7.6}, {7.2, 7.9}, {7.2, 7.9}};	 //Pestañas
+	wcPt3D c44[4] = {{7.4, 7.2}, {7.4, 7.2}, {7.7, 7.5}, {7.7, 7.5}};	 //Pestañas
+	wcPt3D c45[4] = {{7.53, 6.7}, {7.53, 6.7}, {7.87, 6.9}, {7.87, 6.9}}; //Pestañas
 
 	wcPt3D c26[4] = {{2.4, 4.3}, {1, 4.3}, {1, 4.3}, {2, 6}};		  //PELO
 	wcPt3D c27[4] = {{2, 6}, {0.7, 7}, {0.7, 7}, {2, 8}};			  //PELO
