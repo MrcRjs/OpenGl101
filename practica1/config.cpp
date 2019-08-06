@@ -1,8 +1,19 @@
+// Marco Antonio Rojas Arriaga
+
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
 #include <GLUT/glut.h>
+#else
+
+#include <GL/glut.h>
+
+#endif
+
+
 #include <stdlib.h>
 
-void dibujar(void)
-{
+void dibujar(void) {
     glClear(GL_COLOR_BUFFER_BIT);
     glBegin(GL_TRIANGLES);
     glColor3f(1.0, 0.0, 0.0);
@@ -16,8 +27,7 @@ void dibujar(void)
     glFlush();
 }
 
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv) {
     glutInit(&argc, argv);
     glutInitWindowSize(500, 500);
     glutInitWindowPosition(100, 100);

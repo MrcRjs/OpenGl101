@@ -10,16 +10,24 @@
                     opciones se desprenden dos SUBMENÚS con 2 y 6 opciones, respectivamente, para cambiar
                     el color.
 */
+// Marco Antonio Rojas Arriaga
 
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
 #include <GLUT/glut.h>
+#else
+
+#include <GL/glut.h>
+
+#endif
 
 int sky = 0;
 int fig1 = 2;
 int fig2 = 4;
 int fig3 = 6;
 
-typedef enum
-{
+typedef enum {
     FONDO0,
     FONDO1,
     COLOR2,
@@ -31,19 +39,18 @@ typedef enum
 } opcionesMenu;
 
 float colores[8][3] =
-    {
-        {1.00f, 1.00f, 1.00f}, // 0 - blanco
-        {0.00f, 0.00f, 0.00f}, // 1 - negro
-        {1.00f, 0.00f, 0.00f}, // 2 - rojo
-        {0.50f, 0.26f, 0.12f}, // 3 - rojo claro
-        {0.00f, 1.00f, 0.00f}, // 4 - verde
-        {0.06f, 0.25f, 0.13f}, // 5 - verde oscuro
-        {0.00f, 0.00f, 1.00f}, // 6 - azul
-        {0.85f, 0.95f, 1.00f}, // 7 - azul claro
-};
+        {
+                {1.00f, 1.00f, 1.00f}, // 0 - blanco
+                {0.00f, 0.00f, 0.00f}, // 1 - negro
+                {1.00f, 0.00f, 0.00f}, // 2 - rojo
+                {0.50f, 0.26f, 0.12f}, // 3 - rojo claro
+                {0.00f, 1.00f, 0.00f}, // 4 - verde
+                {0.06f, 0.25f, 0.13f}, // 5 - verde oscuro
+                {0.00f, 0.00f, 1.00f}, // 6 - azul
+                {0.85f, 0.95f, 1.00f}, // 7 - azul claro
+        };
 
-void init(void)
-{
+void init(void) {
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 
@@ -54,8 +61,7 @@ void init(void)
 
 void miCuadrado();
 
-void display(void)
-{
+void display(void) {
     glClearColor(colores[sky][0], colores[sky][1], colores[sky][2], 0.0);
 
     glClear(GL_COLOR_BUFFER_BIT); // Limpia la pantalla
@@ -89,8 +95,7 @@ void display(void)
     glFlush(); // Envía toda la salida a la pantalla
 }
 
-void miCuadrado()
-{
+void miCuadrado() {
     glBegin(GL_POLYGON);
     glVertex2f(-50.0f, -50.0f);
     glVertex2f(50.0f, -50.0f);
@@ -100,42 +105,39 @@ void miCuadrado()
 }
 
 // posición de matriz de color
-void onMenu(int opcion)
-{
-    switch (opcion)
-    {
-    case FONDO0:
-        sky = 0;
-        break;
-    case FONDO1:
-        sky = 1;
-        break;
-    case COLOR2:
-        fig1 = 2;
-        break;
-    case COLOR3:
-        fig1 = 3;
-        break;
-    case COLOR4:
-        fig2 = 4;
-        break;
-    case COLOR5:
-        fig2 = 5;
-        break;
-    case COLOR6:
-        fig3 = 7;
-        break;
-    case COLOR7:
-        fig3 = 6;
-        break;
-        break;
+void onMenu(int opcion) {
+    switch (opcion) {
+        case FONDO0:
+            sky = 0;
+            break;
+        case FONDO1:
+            sky = 1;
+            break;
+        case COLOR2:
+            fig1 = 2;
+            break;
+        case COLOR3:
+            fig1 = 3;
+            break;
+        case COLOR4:
+            fig2 = 4;
+            break;
+        case COLOR5:
+            fig2 = 5;
+            break;
+        case COLOR6:
+            fig3 = 7;
+            break;
+        case COLOR7:
+            fig3 = 6;
+            break;
+            break;
     }
     glutPostRedisplay();
 }
 
 // creacion de menu y submenus
-void creacionMenu(void)
-{
+void creacionMenu(void) {
     int menuSky, menuFig, menuMain;
 
     menuFig = glutCreateMenu(onMenu);
@@ -157,8 +159,7 @@ void creacionMenu(void)
     glutAttachMenu(GLUT_RIGHT_BUTTON);
 }
 
-void reshape(int w, int h)
-{
+void reshape(int w, int h) {
     glViewport(0, 0, w, h);
 
     glMatrixMode(GL_PROJECTION);
@@ -169,8 +170,7 @@ void reshape(int w, int h)
     glLoadIdentity();
 }
 
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv) {
     glutInit(&argc, argv);
 
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);

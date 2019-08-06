@@ -1,21 +1,27 @@
-//JUAN CARLOS CONDE RAMÍREZ
+//Alumno: Marco Antonio Rojas Arriaga
+//Profesor: Juan Carlos Conde Ramirez
 //OBJETOS 3D - ILUMINACION
-#include <GLUT/glut.h>
+
+// OSX
+// #include <GLUT/glut.h>
+
+// Linux
+#include <GL/glut.h>
 #include <stdio.h>
 
 //Matriz de colores
 float colores[9][3] =
-    {
-        {1.0, 1.0, 1.0}, //0 Blanco
-        {1.0, 0.0, 0.0}, //1 Rojo
-        {0.0, 1.0, 0.0}, //2 Verde
-        {0.0, 0.0, 1.0}, //3 Azul
-        {0.0, 0.0, 0.0}, //4 Negro
-        {1.0, 1.0, 0.0}, //5 Amarillo
-        {1.0, 0.0, 1.0}, //6 Magenta
-        {0.0, 1.0, 1.0}, //7 Cian
-        {0.8, 0.8, 0.8}  //8 Gris
-};
+        {
+                {1.0, 1.0, 1.0}, //0 Blanco
+                {1.0, 0.0, 0.0}, //1 Rojo
+                {0.0, 1.0, 0.0}, //2 Verde
+                {0.0, 0.0, 1.0}, //3 Azul
+                {0.0, 0.0, 0.0}, //4 Negro
+                {1.0, 1.0, 0.0}, //5 Amarillo
+                {1.0, 0.0, 1.0}, //6 Magenta
+                {0.0, 1.0, 1.0}, //7 Cian
+                {0.8, 0.8, 0.8}  //8 Gris
+        };
 
 int color = 2;  // color de FIGURA
 int colorf = 0; // color de FONDO
@@ -30,8 +36,7 @@ int opc;
 float xpos = 0, ypos = 0, inc = 0.5;
 
 //Menu de figuras a elegir
-typedef enum
-{
+typedef enum {
     F1,
     F2,
     F3,
@@ -58,8 +63,7 @@ typedef enum
     S2
 } opcionMenu;
 
-void luzAmbiental(void)
-{
+void luzAmbiental(void) {
     GLfloat l_difusa[] = {0.22f, 0.17f, 0.12f, 0.0f};
     GLfloat l_especular[] = {0.22f, 0.17f, 0.12f, 0.0f};
     GLfloat l_posicion[] = {0.0, 0.0, 5.0, 1.0};
@@ -72,8 +76,7 @@ void luzAmbiental(void)
     glEnable(GL_LIGHT0);
 }
 
-void luzUno(void)
-{
+void luzUno(void) {
     GLfloat l_difusa[] = {colores[2][0], colores[2][1], colores[2][2], 0.0f};
     GLfloat l_especular[] = {colores[2][0], colores[2][1], colores[2][2], 0.0f};
     GLfloat l_posicion[] = {0.0f, 5.0f, 0.0f, 1.0f};
@@ -84,8 +87,7 @@ void luzUno(void)
     //glEnable (GL_LIGHT1);
 }
 
-void luzTres(void)
-{
+void luzTres(void) {
     GLfloat l_difusa[] = {colores[0][0], colores[0][1], colores[0][2], 0.0f};
     GLfloat l_especular[] = {colores[0][0], colores[0][1], colores[0][2], 0.0f};
 
@@ -102,15 +104,13 @@ void luzTres(void)
     //glEnable (GL_LIGHT3);
 }
 
-void init(void)
-{
+void init(void) {
     luzUno();
     glEnable(GL_LIGHTING);
     glEnable(GL_DEPTH_TEST);
 }
 
-void display(void)
-{
+void display(void) {
     glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -203,18 +203,15 @@ void display(void)
 }
 
 //Accion del mouse
-void onMouse(int button, int state, int x, int y)
-{
-    if ((button == GLUT_LEFT_BUTTON) & (state == GLUT_DOWN))
-    {
+void onMouse(int button, int state, int x, int y) {
+    if ((button == GLUT_LEFT_BUTTON) & (state == GLUT_DOWN)) {
         x0 = x;
         y0 = y;
     }
 }
 
 //Incremento o decremente de los angulos de rotacion
-void onMotion(int x, int y)
-{
+void onMotion(int x, int y) {
     alpha = (alpha + (y - y0));
     beta = (beta + (x - x0));
     x0 = x;
@@ -222,19 +219,17 @@ void onMotion(int x, int y)
     glutPostRedisplay();
 }
 
-void menuFiguras(int opcion)
-{
-    switch (opcion)
-    {
-    case F1:
-        opc = 1;
-        break;
-    case C1:
-        colorf = 0;
-        break;
-    case E1:
-        glEnable(GL_LIGHT1);
-        break;
+void menuFiguras(int opcion) {
+    switch (opcion) {
+        case F1:
+            opc = 1;
+            break;
+        case C1:
+            colorf = 0;
+            break;
+        case E1:
+            glEnable(GL_LIGHT1);
+            break;
     }
 
     luzAmbiental();
@@ -245,8 +240,7 @@ void menuFiguras(int opcion)
 }
 
 //Creacion de menu y submenus
-void creacionMenu(void)
-{
+void creacionMenu(void) {
     int menuFIGURA, menuFONDO, menuCOLOR, menuLUCES, menuMain;
     int on, off;
 
@@ -305,37 +299,34 @@ void creacionMenu(void)
     glutAttachMenu(GLUT_RIGHT_BUTTON);
 }
 
-void ControlTeclado(int Key, int x, int y)
-{
-    switch (Key)
-    {
-    //TRASLACION
-    case GLUT_KEY_RIGHT:
-        xpos += 0.05;
-        break;
-    case GLUT_KEY_LEFT:
-        xpos -= 0.05;
-        break;
-    case GLUT_KEY_UP:
-        ypos += 0.05;
-        break;
-    case GLUT_KEY_DOWN:
-        ypos -= 0.05;
-        break;
-    //ESCALAMIENTO
-    case GLUT_KEY_HOME:
-        inc += 0.05;
-        break;
-    case GLUT_KEY_END:
-        if (inc > 0.0)
-            inc -= 0.05;
-        break;
+void ControlTeclado(int Key, int x, int y) {
+    switch (Key) {
+        //TRASLACION
+        case GLUT_KEY_RIGHT:
+            xpos += 0.05;
+            break;
+        case GLUT_KEY_LEFT:
+            xpos -= 0.05;
+            break;
+        case GLUT_KEY_UP:
+            ypos += 0.05;
+            break;
+        case GLUT_KEY_DOWN:
+            ypos -= 0.05;
+            break;
+            //ESCALAMIENTO
+        case GLUT_KEY_HOME:
+            inc += 0.05;
+            break;
+        case GLUT_KEY_END:
+            if (inc > 0.0)
+                inc -= 0.05;
+            break;
     }
     glutPostRedisplay();
 }
 
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv) {
     glutInit(&argc, argv);
 
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);

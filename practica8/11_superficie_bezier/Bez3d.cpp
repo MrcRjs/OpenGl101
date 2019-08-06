@@ -1,23 +1,33 @@
+// Marco Antonio Rojas Arriaga
+
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
 #include <GLUT/glut.h>
+#else
+
+#include <GL/glut.h>
+
+#endif
+
 
 // numero de puntos de control para esta curva
 GLint nNumPoints = 3;
 
 GLfloat ctrlPoints[3][3][3] = {{{-4.0f, 0.0f, 4.0f},
-                                {-2.0f, 4.0f, 4.0f},
-                                {4.0f, 0.0f, 4.0f}},
+                                       {-2.0f, 4.0f, 4.0f},
+                                       {4.0f, 0.0f, 4.0f}},
 
                                {{-4.0f, 0.0f, 0.0f},
-                                {-2.0f, 4.0f, 0.0f},
-                                {4.0f, 0.0f, 0.0f}},
+                                       {-2.0f, 4.0f, 0.0f},
+                                       {4.0f, 0.0f, 0.0f}},
 
                                {{-4.0f, 0.0f, -4.0f},
-                                {-2.0f, 4.0f, -4.0f},
-                                {4.0f, 0.0f, -4.0f}}};
+                                       {-2.0f, 4.0f, -4.0f},
+                                       {4.0f, 0.0f, -4.0f}}};
 
 // esta  funcion se usa para dibujar los puntos de control sobre la curva
-void DrawPoints(void)
-{
+void DrawPoints(void) {
     int i, j;
 
     glColor3f(1.0f, 0.0f, 0.0f);
@@ -30,8 +40,7 @@ void DrawPoints(void)
     glEnd();
 }
 
-void RenderScene(void)
-{
+void RenderScene(void) {
     glClear(GL_COLOR_BUFFER_BIT);
 
     glMatrixMode(GL_MODELVIEW);
@@ -71,16 +80,14 @@ void RenderScene(void)
     glutSwapBuffers();
 }
 
-void SetupRC()
-{
+void SetupRC() {
     glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
     // dibuja en azul
     glColor3f(0.0f, 0.0f, 1.0f);
 }
 
-void ChangeSize(int w, int h)
-{
+void ChangeSize(int w, int h) {
     if (h == 0)
         h = 1;
 
@@ -94,8 +101,7 @@ void ChangeSize(int w, int h)
     glLoadIdentity();
 }
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
     glutInitWindowSize(800, 600);

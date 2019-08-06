@@ -1,4 +1,15 @@
+// Marco Antonio Rojas Arriaga
+
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
 #include <GLUT/glut.h>
+#else
+
+#include <GL/glut.h>
+
+#endif
+
 #include <iostream>
 
 using namespace std;
@@ -6,70 +17,68 @@ using namespace std;
 GLsizei winWidth = 600, winHeight = 600;
 
 void ControlVertices();
+
 void ControlNormales();
+
 void ControlAristas();
+
 void ControlLuces();
+
 void ControlColisiones();
+
 void ControlSonido();
 
-void init(void)
-{
+void init(void) {
     glClearColor(1.0, 1.0, 1.0, 1.0);
     glMatrixMode(GL_PROJECTION);
     gluOrtho2D(0.0, 200.0, 0.0, 150.0);
 }
 
 // Funciones de control del menú seleccionado, se ejecutan cuando el usuario utilice el menú
-void menu_nivel2(int identificador1)
-{
+void menu_nivel2(int identificador1) {
     // Según la opción del 2do nivel activada, ejecutar una rutina u otra
-    switch (identificador1)
-    {
-    case 0:
-        ControlVertices();
-        break;
-    case 1:
-        ControlNormales();
-        break;
-    case 2:
-        ControlAristas();
-        break;
+    switch (identificador1) {
+        case 0:
+            ControlVertices();
+            break;
+        case 1:
+            ControlNormales();
+            break;
+        case 2:
+            ControlAristas();
+            break;
     }
 
     glutPostRedisplay();
 }
 
-void menu_nivel1(int identificador2)
-{
+void menu_nivel1(int identificador2) {
     // Seún la opción de 1er nivel activada, se ejecutar una rutina u otra
-    switch (identificador2)
-    {
-    case 0:
-        ControlLuces();
-        break;
-    case 1:
-        ControlColisiones();
-        break;
-    case 2:
-        ControlSonido();
-        break;
-    case 3:
-        exit(0);
+    switch (identificador2) {
+        case 0:
+            ControlLuces();
+            break;
+        case 1:
+            ControlColisiones();
+            break;
+        case 2:
+            ControlSonido();
+            break;
+        case 3:
+            exit(0);
     }
 
     glutPostRedisplay();
 }
 
-void displayFcn(void)
-{
+void displayFcn(void) {
     glClearColor(1.0, 1.0, 1.0, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
     glFlush();
     glutSwapBuffers();
 }
 
-void creacionMenu(void)
-{
+void creacionMenu(void) {
     int submenu, menu;
 
     /// Creación del Submenú
@@ -89,8 +98,7 @@ void creacionMenu(void)
     glutAttachMenu(GLUT_RIGHT_BUTTON);
 }
 
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv) {
     glutInit(&argc, argv);
 
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
@@ -106,32 +114,26 @@ int main(int argc, char **argv)
     return 0;
 }
 
-void ControlVertices()
-{
+void ControlVertices() {
     cout << "Control de Vertices" << endl;
 }
 
-void ControlNormales()
-{
+void ControlNormales() {
     cout << "Control de Normales" << endl;
 }
 
-void ControlAristas()
-{
+void ControlAristas() {
     cout << "Control de Aristas" << endl;
 }
 
-void ControlLuces()
-{
+void ControlLuces() {
     cout << "Control de Luces" << endl;
 }
 
-void ControlColisiones()
-{
+void ControlColisiones() {
     cout << "Control de Colisiones" << endl;
 }
 
-void ControlSonido()
-{
+void ControlSonido() {
     cout << "Control de Sonido" << endl;
 }

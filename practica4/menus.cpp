@@ -1,5 +1,17 @@
-#define _USE_MATH_DEFINES
+// Marco Antonio Rojas Arriaga
+
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
 #include <GLUT/glut.h>
+#else
+
+#include <GL/glut.h>
+
+#endif
+s
+#define _USE_MATH_DEFINES
+
 #include <stdio.h>
 #include <string.h>
 #include <string>
@@ -22,8 +34,7 @@ int nx, ny, alpha, beta, rz = 0;
 float sx, sy = 0;
 int tx, ty = 0;
 
-typedef enum
-{
+typedef enum {
     bgBlack,
     bgWhite,
     leftGreen,
@@ -40,26 +51,22 @@ string leftLightGIRColor = "red";
 string rightLightGIRColor = "green";
 string bgColor = "white";
 
-    void
-    keypressed(unsigned char key, int x, int y)
-{
-    switch(key) {
+void
+keypressed(unsigned char key, int x, int y) {
+    switch (key) {
         case 'w': {
             ty += 1;
             break;
         }
-        case 'a':
-        {
+        case 'a': {
             tx -= 1;
             break;
         }
-        case 's':
-        {
+        case 's': {
             ty -= 1;
             break;
         }
-        case 'd':
-        {
+        case 'd': {
             tx += 1;
             break;
         }
@@ -68,30 +75,25 @@ string bgColor = "white";
     glutPostRedisplay();
 };
 
-void onMouse(int button, int state, int x, int y)
-{
+void onMouse(int button, int state, int x, int y) {
     // MANEJO DE ROTACIÓN -> VINCULADO CON EL MOVIMIENTO DEL MOUSE i.e. onMotion()
-    if ((button == GLUT_LEFT_BUTTON) && (state == GLUT_DOWN))
-    {
+    if ((button == GLUT_LEFT_BUTTON) && (state == GLUT_DOWN)) {
         nx = x;
         ny = y;
     }
     // MANEJO DE ESCALAMIENTO
-    if ((button == GLUT_LEFT_BUTTON) && (state == GLUT_DOWN))
-    {
+    if ((button == GLUT_LEFT_BUTTON) && (state == GLUT_DOWN)) {
         sx += 0.5;
         sy += 0.5;
     }
-    if ((button == GLUT_RIGHT_BUTTON) && (state == GLUT_DOWN))
-    {
+    if ((button == GLUT_RIGHT_BUTTON) && (state == GLUT_DOWN)) {
         sx -= 0.5;
         sy -= 0.5;
     }
     glutPostRedisplay();
 }
 
-void onMotion(int x, int y)
-{
+void onMotion(int x, int y) {
     // Calcular ángulo de rotación en base a la posición inicial y final del mouse
     alpha = (alpha + (y - ny));
     beta = (beta + (x - nx));
@@ -99,7 +101,7 @@ void onMotion(int x, int y)
     nx = x;
     ny = y;
     // Elegir el ángulo más grande para rotar
-    if (abs((double)alpha) >= abs((double)beta))
+    if (abs((double) alpha) >= abs((double) beta))
         rz = alpha;
     else
         rz = beta;
@@ -109,52 +111,48 @@ void onMotion(int x, int y)
 // Used to scale robot from unit squares from draft to pixels 
 const GLint SCALE = 20;
 
-void init(void)
-{
+void init(void) {
     glClearColor(1.0, 1.0, 1.0, 0.0);
     //glPolygonMode(GL_FRONT, GL_LINE);
 }
 
-void onMenu(int opt)
-{
-    switch (opt)
-    {
-    case bgBlack:
-        bgColor = "black";
-        break;
-    case bgWhite:
-        bgColor = "white";
-        break;
-    case leftGreen:
-        leftLightGIRColor = "green";
-        break;
-    case leftRed:
-        leftLightGIRColor = "red";
-        break;
-    case leftPurple:
-        leftLightGIRColor = "purple";
-        break;
-    case leftYellow:
-        leftLightGIRColor = "yellow";
-        break;
-    case rightGreen:
-        rightLightGIRColor = "green";
-        break;
-    case rightRed:
-        rightLightGIRColor = "red";
-        break;
-    case rightPurple:
-        rightLightGIRColor = "purple";
-        break;
-    case rightYellow:
-        rightLightGIRColor = "yellow";
-        break;
+void onMenu(int opt) {
+    switch (opt) {
+        case bgBlack:
+            bgColor = "black";
+            break;
+        case bgWhite:
+            bgColor = "white";
+            break;
+        case leftGreen:
+            leftLightGIRColor = "green";
+            break;
+        case leftRed:
+            leftLightGIRColor = "red";
+            break;
+        case leftPurple:
+            leftLightGIRColor = "purple";
+            break;
+        case leftYellow:
+            leftLightGIRColor = "yellow";
+            break;
+        case rightGreen:
+            rightLightGIRColor = "green";
+            break;
+        case rightRed:
+            rightLightGIRColor = "red";
+            break;
+        case rightPurple:
+            rightLightGIRColor = "purple";
+            break;
+        case rightYellow:
+            rightLightGIRColor = "yellow";
+            break;
     }
     glutPostRedisplay();
 }
 
-void colorMenu(void)
-{
+void colorMenu(void) {
     int GIRLeftMenu, GIRRightMenu, BgMenu, GIRMenu, MainMenu;
 
     GIRLeftMenu = glutCreateMenu(onMenu);
@@ -184,8 +182,7 @@ void colorMenu(void)
     glutAttachMenu(GLUT_RIGHT_BUTTON);
 }
 
-void setColor(string color)
-{
+void setColor(string color) {
     /*
     GIR colors
     metal
@@ -205,50 +202,30 @@ void setColor(string color)
     purple
     #ba0be0
     */
-    if(color.compare("metal") == 0)
-    {
+    if (color.compare("metal") == 0) {
         glColor3f(0.7f, 0.7f, 0.7f);
-    }
-    else if (color.compare("metal-shadow") == 0)
-    {
+    } else if (color.compare("metal-shadow") == 0) {
         glColor3f(0.51f, 0.51f, 0.51f);
-    }
-    else if (color.compare("metal-light") == 0)
-    {
+    } else if (color.compare("metal-light") == 0) {
         glColor3f(0.76f, 0.79f, 0.78f);
-    }
-    else if (color.compare("red") == 0)
-    {
+    } else if (color.compare("red") == 0) {
         glColor3f(0.91f, 0.0f, 0.22f);
-    }
-    else if (color.compare("green") == 0)
-    {
+    } else if (color.compare("green") == 0) {
         glColor3f(0.28f, 0.96f, 0.65f);
-    }
-    else if (color.compare("black") == 0)
-    {
+    } else if (color.compare("black") == 0) {
         glColor3f(0.0f, 0.0f, 0.0f);
-    }
-    else if (color.compare("pink") == 0)
-    {
+    } else if (color.compare("pink") == 0) {
         glColor3f(0.9f, 0.7f, 0.95f);
-    }
-    else if (color.compare("white") == 0)
-    {
+    } else if (color.compare("white") == 0) {
         glColor3f(1.0f, 1.0f, 1.0f);
-    }
-    else if (color.compare("purple") == 0)
-    {
+    } else if (color.compare("purple") == 0) {
         glColor3f(0.73f, 0.04f, 0.88f);
-    }
-    else if (color.compare("yellow") == 0)
-    {
+    } else if (color.compare("yellow") == 0) {
         glColor3f(0.8f, 1.0f, 0.0f);
     }
 }
 
-void drawHead()
-{
+void drawHead() {
     /*
         Robot Head
     */
@@ -381,8 +358,7 @@ void drawHead()
     glEnd();
 }
 
-void drawBody()
-{
+void drawBody() {
     /*
         GIR Body
     */
@@ -423,8 +399,7 @@ void drawBody()
     glEnd();
 }
 
-void drawLeftArm()
-{
+void drawLeftArm() {
     /*
         Left Arm
     */
@@ -463,8 +438,7 @@ void drawLeftArm()
     glEnd();
 }
 
-void drawRightArm()
-{
+void drawRightArm() {
     /*
         Right Arm
     */
@@ -501,8 +475,7 @@ void drawRightArm()
     glEnd();
 }
 
-void drawFoot()
-{
+void drawFoot() {
     // Foot
     glBegin(GL_TRIANGLES);
     setColor("metal");
@@ -519,17 +492,14 @@ void drawFoot()
 }
 
 // Main display function, to draw and apply transformations to polygons
-void displayGir(void)
-{
+void displayGir(void) {
     glClear(GL_COLOR_BUFFER_BIT);
     glMatrixMode(GL_MODELVIEW);
 
-    if(bgColor.compare("white") == 0) {
+    if (bgColor.compare("white") == 0) {
         glClearColor(1.0, 1.0, 1.0, 0.0);
         glutPostRedisplay();
-    }
-    else if (bgColor.compare("black") == 0)
-    {
+    } else if (bgColor.compare("black") == 0) {
         glClearColor(0.0, 0.0, 0.0, 0.0);
         glutPostRedisplay();
     }
@@ -537,38 +507,38 @@ void displayGir(void)
     glPushMatrix();
     glLoadIdentity();
     glScalef(1 + sx, 1 + sy, 0);
-    glTranslatef((tx -1.0) * SCALE, (ty + 7.5f) * SCALE, 0);
+    glTranslatef((tx - 1.0) * SCALE, (ty + 7.5f) * SCALE, 0);
     glRotatef(rz, 0, 0, 1);
     drawHead();
     glPopMatrix();
 
     glPushMatrix();
     glLoadIdentity();
-    glTranslatef((tx -0.5) * SCALE, (ty -4.5) * SCALE, 0);
+    glTranslatef((tx - 0.5) * SCALE, (ty - 4.5) * SCALE, 0);
     drawBody();
     glPopMatrix();
 
     glPushMatrix();
     glLoadIdentity();
-    glTranslatef((tx -6.5) * SCALE, (ty + 4.5) * SCALE, 0);
+    glTranslatef((tx - 6.5) * SCALE, (ty + 4.5) * SCALE, 0);
     drawLeftArm();
     glPopMatrix();
 
     glPushMatrix();
     glLoadIdentity();
-    glTranslatef((tx + 4) * SCALE, (ty -4.5) * SCALE, 0);
+    glTranslatef((tx + 4) * SCALE, (ty - 4.5) * SCALE, 0);
     drawRightArm();
     glPopMatrix();
 
     glPushMatrix();
     glLoadIdentity();
-    glTranslatef((tx -2) * SCALE, (ty -10.5) * SCALE, 0);
+    glTranslatef((tx - 2) * SCALE, (ty - 10.5) * SCALE, 0);
     drawFoot();
     glPopMatrix();
 
     glPushMatrix();
     glLoadIdentity();
-    glTranslatef((tx + 1) * SCALE, (ty -10.5) * SCALE, 0);
+    glTranslatef((tx + 1) * SCALE, (ty - 10.5) * SCALE, 0);
     drawFoot();
     glPopMatrix();
 
@@ -576,8 +546,7 @@ void displayGir(void)
 }
 
 
-void testDisplay(void)
-{
+void testDisplay(void) {
     glClear(GL_COLOR_BUFFER_BIT);
     glMatrixMode(GL_MODELVIEW);
 
@@ -607,8 +576,7 @@ void testDisplay(void)
     glFlush();
 }
 
-void winReshapeFcn(GLint w, GLint h)
-{
+void winReshapeFcn(GLint w, GLint h) {
     if (h == 0)
         h = 1;
 
@@ -628,8 +596,7 @@ void winReshapeFcn(GLint w, GLint h)
     glLoadIdentity();
 }
 
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv) {
     glutInit(&argc, argv);
 
     GLint window_1;

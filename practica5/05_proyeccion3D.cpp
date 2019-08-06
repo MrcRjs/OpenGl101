@@ -1,10 +1,20 @@
+// Marco Antonio Rojas Arriaga
+
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
 #include <GLUT/glut.h>
+#else
+
+#include <GL/glut.h>
+
+#endif
+
 #include <math.h>
 
 float aspect = 1.0f;
 
-void init()
-{
+void init() {
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 
@@ -16,8 +26,7 @@ void init()
     glLoadIdentity();
 }
 
-void display1(void)
-{
+void display1(void) {
     glClear(GL_COLOR_BUFFER_BIT);
 
     gluLookAt(0.0f, 0.0f, 5.0f,
@@ -30,8 +39,8 @@ void display1(void)
     glutSwapBuffers();
     glFlush();
 }
-void display4(void)
-{
+
+void display4(void) {
     glClear(GL_COLOR_BUFFER_BIT);
 
     gluLookAt(0.0f, 0.0f, -5.0f,
@@ -44,8 +53,8 @@ void display4(void)
     glutSwapBuffers();
     glFlush();
 }
-void display2(void)
-{
+
+void display2(void) {
     glClear(GL_COLOR_BUFFER_BIT);
 
     gluLookAt(5.0f, 0.0f, 0.0f,
@@ -58,8 +67,8 @@ void display2(void)
     glutSwapBuffers();
     glFlush();
 }
-void display5(void)
-{
+
+void display5(void) {
     glClear(GL_COLOR_BUFFER_BIT);
 
     gluLookAt(-5.0f, 0.0f, 0.0f,
@@ -72,8 +81,8 @@ void display5(void)
     glutSwapBuffers();
     glFlush();
 }
-void display3(void)
-{
+
+void display3(void) {
     glClear(GL_COLOR_BUFFER_BIT);
 
     gluLookAt(0.0f, 5.0f, 0.0f,
@@ -86,8 +95,8 @@ void display3(void)
     glutSwapBuffers();
     glFlush();
 }
-void display6(void)
-{
+
+void display6(void) {
     glClear(GL_COLOR_BUFFER_BIT);
 
     gluLookAt(0.0f, -5.0f, 0.0f,
@@ -101,14 +110,12 @@ void display6(void)
     glFlush();
 }
 
-void onSize(int sx, int sy)
-{
+void onSize(int sx, int sy) {
     glViewport(0, 0, sx, sy);
-    aspect = (float)sx / (float)sy;
+    aspect = (float) sx / (float) sy;
 }
 
-void winReshapeFcn(GLint w, GLint h)
-{
+void winReshapeFcn(GLint w, GLint h) {
     if (h == 0)
         h = 1;
 
@@ -128,8 +135,7 @@ void winReshapeFcn(GLint w, GLint h)
     glLoadIdentity();
 }
 
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv) {
     glutInit(&argc, argv);
 
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
@@ -149,7 +155,7 @@ int main(int argc, char **argv)
     glutDisplayFunc(display2);
     glutReshapeFunc(winReshapeFcn);
     init();
-    
+
     glutInitWindowSize(400, 400);
     glutInitWindowPosition(810, 50);
     w3 = glutCreateWindow("Superior");

@@ -1,19 +1,28 @@
+// Marco Antonio Rojas Arriaga
+
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
 #include <GLUT/glut.h>
+#else
+
+#include <GL/glut.h>
+
+#endif
+
 
 // definición e inicialización de variables globales
-void init(void)
-{
-	glMatrixMode (GL_PROJECTION);
-	glEnable(GL_DEPTH_TEST);
-	glLoadIdentity();
-	glClearColor (0.0, 0.0, 0.0, 0.0);
+void init(void) {
+    glMatrixMode(GL_PROJECTION);
+    glEnable(GL_DEPTH_TEST);
+    glLoadIdentity();
+    glClearColor(0.0, 0.0, 0.0, 0.0);
 }
 
-void reshape(int w, int h)
-{
+void reshape(int w, int h) {
     GLfloat nRange = 20.0f;
 
-    if(h == 0)
+    if (h == 0)
         h = 1;
 
     glViewport(0, 0, w, h);
@@ -22,36 +31,34 @@ void reshape(int w, int h)
     glLoadIdentity();
 
     if (w <= h)
-        glOrtho (-nRange, nRange, -nRange*h/w, nRange*h/w, -nRange, nRange);
+        glOrtho(-nRange, nRange, -nRange * h / w, nRange * h / w, -nRange, nRange);
     else
-        glOrtho (-nRange*w/h, nRange*w/h, -nRange, nRange, -nRange, nRange);
+        glOrtho(-nRange * w / h, nRange * w / h, -nRange, nRange, -nRange, nRange);
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 }
 
 // partimos de la posición x= y z=o en el mundo
-GLfloat xpos=0, zpos=0;
+GLfloat xpos = 0, zpos = 0;
 
 // rutinas de render
-void dibujarMundo()
-{
-     glPushMatrix();
-        glBegin(GL_POLYGON);            // dibuja 3 puntos
-          glColor3f(1.0f, 0.0f, 0.0f);
-          glVertex3f(-50.0f, -5.0f, -50.0f);
-          glColor3f(1.0f, 0.5f, 0.0f);
-          glVertex3f( 50.0f, -5.0f, -50.0f);
-          glColor3f(0.0f, 1.0f, 0.0f);
-          glVertex3f( 50.0f, 5.0f, 50.f);
-          glColor3f(1.0f, 1.0f, 0.5f);
-          glVertex3f(-50.0f, 5.0f, 50.0f);
-        glEnd();
+void dibujarMundo() {
+    glPushMatrix();
+    glBegin(GL_POLYGON);            // dibuja 3 puntos
+    glColor3f(1.0f, 0.0f, 0.0f);
+    glVertex3f(-50.0f, -5.0f, -50.0f);
+    glColor3f(1.0f, 0.5f, 0.0f);
+    glVertex3f(50.0f, -5.0f, -50.0f);
+    glColor3f(0.0f, 1.0f, 0.0f);
+    glVertex3f(50.0f, 5.0f, 50.f);
+    glColor3f(1.0f, 1.0f, 0.5f);
+    glVertex3f(-50.0f, 5.0f, 50.0f);
+    glEnd();
     glPopMatrix();
 }
 
-void Dibujar()
-{
+void Dibujar() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glClearColor(1.0, 1.0, 1.0, 0.0);
     dibujarMundo(); // dibujo el mundo
@@ -60,47 +67,45 @@ void Dibujar()
     glColor3f(1.0, 1.0, 0.0); // activo el color amarillo
 
     glPushMatrix();
-        // se traslada a la posici�n concreta en el mundo
-        glTranslatef(xpos, 0.0, zpos);
-        // dibujo una esfera de radio 2 unidades y dividida en 16 trozos
-        glutSolidSphere(3.0, 16, 16);
+    // se traslada a la posici�n concreta en el mundo
+    glTranslatef(xpos, 0.0, zpos);
+    // dibujo una esfera de radio 2 unidades y dividida en 16 trozos
+    glutSolidSphere(3.0, 16, 16);
     glPopMatrix();
 
     glutSwapBuffers();
 }
+
 // rutina de control del teclado
-void ControlTeclado(unsigned char key, int x, int y)
-{
+void ControlTeclado(unsigned char key, int x, int y) {
     // seg�n sea la tecla oprimida se incrementa una u otra variable de movimiento
-    switch (key)
-    {
+    switch (key) {
         case 'o':
-                xpos--;
-                break;
+            xpos--;
+            break;
         case 'p':
-                xpos++;
-                break;
+            xpos++;
+            break;
         case 'q':
-                zpos++;
-                break;
+            zpos++;
+            break;
         case 'a':
-                zpos--;
-                break;
+            zpos--;
+            break;
     }
     // le digo a openGL que dibuje de nuevo cuando pueda
     glutPostRedisplay();
 }
 
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv) {
     int id;
 
     glutInit(&argc, argv); // definición tópica de una ventana
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
     glutInitWindowSize(500, 500);
-    glutInitWindowPosition(0,0);
+    glutInitWindowPosition(0, 0);
 
-    id=glutCreateWindow("Ejemplo de control de movimiento");
+    id = glutCreateWindow("Ejemplo de control de movimiento");
 
     init();
     glutReshapeFunc(reshape);

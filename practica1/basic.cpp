@@ -1,9 +1,20 @@
-#include <stdlib.h>
+// Marco Antonio Rojas Arriaga
+
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
 #include <GLUT/glut.h>
+#else
+
+#include <GL/glut.h>
+
+#endif
+
+
+#include <stdlib.h>
 
 // Rutina de dibujado (display)
-void drawScene(void)
-{
+void drawScene(void) {
     glOrtho(0.0, 100.0, 0.0, 100.0, -1.0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);
     glColor3f(0.0, 0.0, 0.0);
@@ -15,36 +26,32 @@ void drawScene(void)
     glEnd();
     glFlush();
 }
+
 // Rutina de inicialización
-void setup(void)
-{
+void setup(void) {
     glClearColor(1.0, 1.0, 1.0, 0.0);
 }
 
 // OpenGL window reshape routine.
-void resize(int w, int h)
-{
-    glViewport(0, 0, (GLsizei)w, (GLsizei)h);
+void resize(int w, int h) {
+    glViewport(0, 0, (GLsizei) w, (GLsizei) h);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 }
 
-void keyInput(unsigned char key, int x, int y)
-{
-    switch (key)
-    { // Presiona ESC para EXIT
-    case 27:
-        exit(0);
-        break;
-    default:
-        break;
+void keyInput(unsigned char key, int x, int y) {
+    switch (key) { // Presiona ESC para EXIT
+        case 27:
+            exit(0);
+            break;
+        default:
+            break;
     }
 }
 
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv) {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
     glutInitWindowSize(500, 500);

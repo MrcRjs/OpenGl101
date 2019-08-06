@@ -1,4 +1,15 @@
+// Marco Antonio Rojas Arriaga
+
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
 #include <GLUT/glut.h>
+#else
+
+#include <GL/glut.h>
+
+#endif
+
 #include <string.h>
 
 // Keep screen 16:10 aspect ratio
@@ -13,23 +24,20 @@ GLfloat xwcMin = winWidth / 2 * -1, xwcMax = winWidth / 2;
 GLfloat ywcMin = winHeight / 2 * -1, ywcMax = winWidth / 2;
 
 //Se define un objeto Punto (x, y) de tipo flotante
-class wcPt2D
-{
-  public:
+class wcPt2D {
+public:
     GLfloat x, y;
 };
 
 // Used to scale
 const GLint SCALE = 20;
 
-void init(void)
-{
+void init(void) {
     glClearColor(1.0, 1.0, 1.0, 0.0);
     //glPolygonMode(GL_FRONT, GL_LINE);
 }
 
-void setColor(char *color)
-{
+void setColor(char *color) {
     /*
     GIR colors
     metal
@@ -45,39 +53,25 @@ void setColor(char *color)
     pink
     #E6B2F1
     */
-    if (strcmp(color, "metal") == 0)
-    {
+    if (strcmp(color, "metal") == 0) {
         glColor3f(0.7f, 0.7f, 0.7f);
-    }
-    else if (strcmp(color, "metal-shadow") == 0)
-    {
+    } else if (strcmp(color, "metal-shadow") == 0) {
         glColor3f(0.51f, 0.51f, 0.51f);
-    }
-    else if (strcmp(color, "metal-light") == 0)
-    {
+    } else if (strcmp(color, "metal-light") == 0) {
         glColor3f(0.76f, 0.79f, 0.78f);
-    }
-    else if (strcmp(color, "red") == 0)
-    {
+    } else if (strcmp(color, "red") == 0) {
         glColor3f(0.91f, 0.0f, 0.22f);
-    }
-    else if (strcmp(color, "green") == 0)
-    {
+    } else if (strcmp(color, "green") == 0) {
         glColor3f(0.28f, 0.96f, 0.65f);
-    }
-    else if (strcmp(color, "black") == 0)
-    {
+    } else if (strcmp(color, "black") == 0) {
         glColor3f(0.0f, 0.0f, 0.0f);
-    }
-    else if (strcmp(color, "pink") == 0)
-    {
+    } else if (strcmp(color, "pink") == 0) {
         glColor3f(0.9f, 0.7f, 0.95f);
     }
 }
 
 // Main display function, to draw and apply transformations to polygons
-void displayGir(void)
-{
+void displayGir(void) {
     /*
         Robot Head
     */
@@ -354,8 +348,7 @@ void displayGir(void)
     glFlush();
 }
 
-void displayGirWTriangle()
-{
+void displayGirWTriangle() {
     /*
         Robot Head
     */
@@ -632,8 +625,7 @@ void displayGirWTriangle()
     glFlush();
 }
 
-void winReshapeFcn(GLint w, GLint h)
-{
+void winReshapeFcn(GLint w, GLint h) {
     if (h == 0)
         h = 1;
 
@@ -653,8 +645,7 @@ void winReshapeFcn(GLint w, GLint h)
     glLoadIdentity();
 }
 
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv) {
     glutInit(&argc, argv);
 
     GLint window_1, window_2;

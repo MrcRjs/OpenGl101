@@ -1,43 +1,54 @@
+// Marco Antonio Rojas Arriaga
+
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
 #include <GLUT/glut.h>
+#else
+
+#include <GL/glut.h>
+
+#endif
+
 #include <stdlib.h>
 #include <math.h>
 
 // puntos de control de la superficie de Bezier
 GLfloat ctrlpoints[5][5][3] = {
-    /// 5a FILA DE PUNTOS
-    {{-2.0, -2.0, 0.5},
-     {-1.0, -2.0, -0.4},
-     {0.0, -2.0, -0.5},
-     {1.0, -2.0, -0.4},
-     {2.0, -2.0, 0.5}},
+        /// 5a FILA DE PUNTOS
+        {{-2.0, -2.0, 0.5},
+                {-1.0, -2.0, -0.4},
+                {0.0, -2.0, -0.5},
+                {1.0, -2.0, -0.4},
+                {2.0, -2.0, 0.5}},
 
-    /// 4a FILA DE PUNTOS
-    {{-2.0, -1.0, 0.5},
-     {-1.0, -1.0, 0.5},
-     {0.0, -1.0, 0.75},
-     {1.0, -1.0, 0.5},
-     {2.0, -1.0, 0.25}},
+        /// 4a FILA DE PUNTOS
+        {{-2.0, -1.0, 0.5},
+                {-1.0, -1.0, 0.5},
+                {0.0, -1.0, 0.75},
+                {1.0, -1.0, 0.5},
+                {2.0, -1.0, 0.25}},
 
-    /// 3a FILA DE PUNTOS
-    {{-2.0, 0.0, 0.6},
-     {-1.0, 0.0, 1.0},
-     {0.0, 0.0, 1.5},
-     {1.0, 0.0, 1.0},
-     {2.0, 0.0, 0.26}},
+        /// 3a FILA DE PUNTOS
+        {{-2.0, 0.0,  0.6},
+                {-1.0, 0.0,  1.0},
+                {0.0, 0.0,  1.5},
+                {1.0, 0.0,  1.0},
+                {2.0, 0.0,  0.26}},
 
-    /// 2a FILA DE PUNTOS
-    {{-2.0, 1.0, 0.5},
-     {-1.0, 1.0, 1.0},
-     {0.0, 1.0, 1.25},
-     {1.0, 1.0, 1.0},
-     {2.0, 1.0, 0.25}},
+        /// 2a FILA DE PUNTOS
+        {{-2.0, 1.0,  0.5},
+                {-1.0, 1.0,  1.0},
+                {0.0, 1.0,  1.25},
+                {1.0, 1.0,  1.0},
+                {2.0, 1.0,  0.25}},
 
-    /// 1a FILA DE PUNTOS
-    {{-2.0, 2.0, 1.0},
-     {-1.0, 2.0, 0.5},
-     {0.0, 2.0, 0.25},
-     {1.0, 2.0, 0.5},
-     {2.0, 2.0, 1.0}}};
+        /// 1a FILA DE PUNTOS
+        {{-2.0, 2.0,  1.0},
+                {-1.0, 2.0,  0.5},
+                {0.0, 2.0,  0.25},
+                {1.0, 2.0,  0.5},
+                {2.0, 2.0,  1.0}}};
 
 // propiedades del material
 GLfloat mat_ambient[] = {0.0f, 0.05f, 0.06f, 1.0f};
@@ -50,8 +61,7 @@ GLfloat roty = 0.0;
 GLfloat rotz = 0.0;
 
 // parametros de la fuente de luz
-void initlights(void)
-{
+void initlights(void) {
     // propiedades de la fuente de luz
     GLfloat ambient[] = {0.2f, 0.2f, 0.2f, 1.0f};
     GLfloat diffuse[] = {1.0f, 1.0f, 1.0f, 1.0f};
@@ -65,8 +75,7 @@ void initlights(void)
 }
 
 // dibuja los puntos de control de la superficie
-void DrawPoints(void)
-{
+void DrawPoints(void) {
     int i, j;
 
     glPushAttrib(GL_LIGHTING_BIT);
@@ -86,14 +95,12 @@ void DrawPoints(void)
     glColor3f(0.0, 0.25, 0.5);
     glBegin(GL_LINES);
     for (j = 0; j < 4; j++)
-        for (i = 0; i < 4; i++)
-        {
+        for (i = 0; i < 4; i++) {
             glVertex3fv(ctrlpoints[j][i]);
             glVertex3fv(ctrlpoints[j][i + 1]);
         }
     for (i = 0; i < 4; i++)
-        for (j = 0; j < 4; j++)
-        {
+        for (j = 0; j < 4; j++) {
             glVertex3fv(ctrlpoints[j][i]);
             glVertex3fv(ctrlpoints[j + 1][i]);
         }
@@ -103,8 +110,7 @@ void DrawPoints(void)
 }
 
 // dibuja la superficie
-void display(void)
-{
+void display(void) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glMatrixMode(GL_MODELVIEW_MATRIX);
 
@@ -128,8 +134,7 @@ void display(void)
     glFlush();
 }
 
-void init(void)
-{
+void init(void) {
     glClearColor(0.0, 0.0, 0.0, 1.0);
     glEnable(GL_DEPTH_TEST);
     glMap2f(GL_MAP2_VERTEX_3,
@@ -144,77 +149,71 @@ void init(void)
     initlights();
 }
 
-void reshape(int w, int h)
-{
-    glViewport(0, 0, (GLsizei)w, (GLsizei)h);
+void reshape(int w, int h) {
+    glViewport(0, 0, (GLsizei) w, (GLsizei) h);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluPerspective(30, (GLfloat)w / (GLfloat)h, 1.0, 50.0);
+    gluPerspective(30, (GLfloat) w / (GLfloat) h, 1.0, 50.0);
     glMatrixMode(GL_MODELVIEW);
 }
 
-void keyboard(unsigned char key, int x, int y)
-{
-    switch (key)
-    {
-    case '1':
-        rotx = rotx + 10.0f;
-        glutPostRedisplay();
-        break;
-    case '2':
-        rotx = rotx - 10.0f;
-        glutPostRedisplay();
-        break;
-    case '3':
-        roty = roty + 10.0f;
-        glutPostRedisplay();
-        break;
-    case '4':
-        roty = roty - 10.0f;
-        glutPostRedisplay();
-        break;
-    case '5':
-        rotz = rotz + 10.0f;
-        glutPostRedisplay();
-        break;
-    case '6':
-        rotz = rotz - 10.0f;
-        glutPostRedisplay();
-        break;
-    case 27:
-        exit(0);
-        break;
+void keyboard(unsigned char key, int x, int y) {
+    switch (key) {
+        case '1':
+            rotx = rotx + 10.0f;
+            glutPostRedisplay();
+            break;
+        case '2':
+            rotx = rotx - 10.0f;
+            glutPostRedisplay();
+            break;
+        case '3':
+            roty = roty + 10.0f;
+            glutPostRedisplay();
+            break;
+        case '4':
+            roty = roty - 10.0f;
+            glutPostRedisplay();
+            break;
+        case '5':
+            rotz = rotz + 10.0f;
+            glutPostRedisplay();
+            break;
+        case '6':
+            rotz = rotz - 10.0f;
+            glutPostRedisplay();
+            break;
+        case 27:
+            exit(0);
+            break;
     }
 }
 
-void teclado(int Key, int x, int y)
-{
-    switch (Key)
-    {
-    case GLUT_KEY_RIGHT:
-        roty = roty + 10.0f;
-        break;
-    case GLUT_KEY_LEFT:
-        roty = roty - 10.0f;
-        break;
-    case GLUT_KEY_UP:
-        rotx = rotx - 10.0f;
-        break;
-    case GLUT_KEY_DOWN:
-        rotx = rotx + 10.0f;
-        break;
-    case GLUT_KEY_PAGE_UP:
-        rotz = rotz + 10.0f;
-        break;
-    case GLUT_KEY_PAGE_DOWN:
-        rotz = rotz - 10.0f;
-        break;
+void teclado(int Key, int x, int y) {
+    switch (Key) {
+        case GLUT_KEY_RIGHT:
+            roty = roty + 10.0f;
+            break;
+        case GLUT_KEY_LEFT:
+            roty = roty - 10.0f;
+            break;
+        case GLUT_KEY_UP:
+            rotx = rotx - 10.0f;
+            break;
+        case GLUT_KEY_DOWN:
+            rotx = rotx + 10.0f;
+            break;
+        case GLUT_KEY_PAGE_UP:
+            rotz = rotz + 10.0f;
+            break;
+        case GLUT_KEY_PAGE_DOWN:
+            rotz = rotz - 10.0f;
+            break;
     }
     glutPostRedisplay();
 }
 
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv) {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB | GLUT_DEPTH);
     glutInitWindowSize(400, 400);
