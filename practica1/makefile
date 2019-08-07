@@ -11,10 +11,7 @@ ifeq ($(UNAME), Darwin)
 CXXFLAGS = -framework GLUT -framework OpenGL
 endif
 
-all :
-	$(CXX) -o basic.o basic.cpp $(CXXFLAGS)
-	$(CXX) -o ejemplo1.o ejemplo1.cpp $(CXXFLAGS)
-	$(CXX) -o config.o config.cpp $(CXXFLAGS)
+all : basic ejemplo1 config
 
 basic : basic.cpp
 	$(CXX) -o basic.o basic.cpp $(CXXFLAGS)
