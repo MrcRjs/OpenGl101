@@ -37,4 +37,4 @@ normalizer.o : ../utils/normalizer.cpp ../utils/normalizer.h
 .PHONY : clean
 
 clean:
-	rm -f $(obj)
+	rm -f $(obj) normalizer.o
