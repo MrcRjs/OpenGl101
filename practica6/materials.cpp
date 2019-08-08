@@ -183,6 +183,7 @@ void display(void) {
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     luzAmbiental();
+    // Material define
     //redPlastic();
     //blackPlastic();
     //esmeralda();
