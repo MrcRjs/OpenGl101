@@ -1,6 +1,15 @@
-//JUAN CARLOS CONDE RAMÍREZ
-//OBJETOS 3D - ILUMINACION
+// Marco Antonio Rojas Arriaga
+
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
 #include <GLUT/glut.h>
+#else
+
+#include <GL/glut.h>
+
+#endif
+
 #include <stdio.h>
 #include <iostream>
 #include <string.h>
