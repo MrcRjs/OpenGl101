@@ -27,7 +27,14 @@ $ make
 $ ./basic.o
 ```
 
+### Contents
 
+#### Practica 1
+
+##### ejemplo1.cpp
+
+Examples of how to use `GL_POINTS, GL_LINES, GL_POLYGON, GL_TRIANGLE, GL_TRIANGLE_STRIP,
+GL_TRIANGLE_FAN, GL_QUADS, GL_QUAD_STRIP, GL_LINE_STRIP GL_LINE_LOOP`.
 
 ![Practica 1](./img/p1_01.png)
 
