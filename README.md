@@ -48,6 +48,18 @@ and OpenGL built-in `glTranslate()` `glRotate()` and `glScale()`
 
 ![Practica 2](./img/p2_01.png)
 
+#### Practica 3
+
+##### primitiveRobot.cpp
+
+Graphing a drawing using only triangles, quadrilaterals and coordinates.
+
+<img alt="Practica 3 GIR" src="/img/gir.jpg" height="500"/>
+
+##### primitiveRobotFunctions.cpp
+
+The character is separated into different parts to be drawn with separate functions.
+
 ![Practica 3](./img/p3_01.png)
 
 ![Practica 4](./img/p4_01.png)
