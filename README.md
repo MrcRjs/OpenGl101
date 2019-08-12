@@ -106,6 +106,8 @@ Use keyboard events to modify graphics with `glutKeyboardFunc()`.
 
 ##### iluminacion3D.cpp iluminacion3Dpt2.cpp 
 
+Use of diffuse, specular and spot lights using `glLightfv()`
+
 ![Practica 5](./img/p5_01.png)
 ![Practica 5](./img/p5_02.png)
 ![Practica 5](./img/p5_04.png)
@@ -114,6 +116,9 @@ Use keyboard events to modify graphics with `glutKeyboardFunc()`.
 ![Practica 5](./img/p5_07.png)
 
 ##### proyeccion3D.cpp
+
+Camera positioning using `gluLookAt()`
+
 ![Practica 5](./img/p5_09.png)
 
 ![Practica 6](./img/p6_01.png)
