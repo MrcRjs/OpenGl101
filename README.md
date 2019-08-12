@@ -3,7 +3,25 @@ OpenGL 101
 
 Graphics in OpenGL
 
-[TOC]
+* [OpenGL 101](#opengl-101)
+     * [Installation](#installation)
+        * [pre-requisites](#pre-requisites)
+     * [Contents](#contents)
+        * [Practica 1](#practica-1)
+           * [ejemplo1.cpp](#ejemplo1cpp)
+        * [Practica 2](#practica-2)
+           * [actividades.cpp actividades-alt.cpp](#actividadescpp-actividades-altcpp)
+        * [Practica 3](#practica-3)
+           * [primitiveRobot.cpp](#primitiverobotcpp)
+           * [primitiveRobotFunctions.cpp](#primitiverobotfunctionscpp)
+        * [Practica 4](#practica-4)
+           * [menus.cpp menu.cpp menu_niveles.cpp](#menuscpp-menucpp-menu_nivelescpp)
+           * [curvas.cpp](#curvascpp)
+           * [key_motion.cpp](#key_motioncpp)
+        * [Practica 5](#practica-5)
+           * [iluminacion3D.cpp iluminacion3Dpt2.cpp](#iluminacion3dcpp-iluminacion3dpt2cpp)
+           * [proyeccion3D.cpp](#proyeccion3dcpp)
+
 
 ### Installation
 
@@ -80,17 +98,22 @@ Graphing of different curves, with a menu of options to modify the color, shape 
 
 ##### key_motion.cpp
 
-Use keyboard events to modify graphics.
+Use keyboard events to modify graphics with `glutKeyboardFunc()`.
 
 ![Practica 4 key motion](./img/p4_03.png)
 
+#### Practica 5
+
+##### iluminacion3D.cpp iluminacion3Dpt2.cpp 
 
 ![Practica 5](./img/p5_01.png)
 ![Practica 5](./img/p5_02.png)
 ![Practica 5](./img/p5_04.png)
-![Practica 5](./img/p5_03.png)
 ![Practica 5](./img/p5_06.png)
+![Practica 5](./img/p5_03.png)
 ![Practica 5](./img/p5_07.png)
+
+##### proyeccion3D.cpp
 ![Practica 5](./img/p5_09.png)
 
 ![Practica 6](./img/p6_01.png)
