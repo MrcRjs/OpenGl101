@@ -33,10 +33,18 @@ $ ./basic.o
 
 ##### ejemplo1.cpp
 
-Examples of how to use `GL_POINTS, GL_LINES, GL_POLYGON, GL_TRIANGLE, GL_TRIANGLE_STRIP,
+Examples on how to use `GL_POINTS, GL_LINES, GL_POLYGON, GL_TRIANGLE, GL_TRIANGLE_STRIP,
 GL_TRIANGLE_FAN, GL_QUADS, GL_QUAD_STRIP, GL_LINE_STRIP GL_LINE_LOOP`.
 
 ![Practica 1](./img/p1_01.png)
+
+
+#### Practica 2
+
+##### actividades.cpp actividades-alt.cpp
+
+Translation, rotation and scaling examples using own functions
+and OpenGL built-in `glTranslate()` `glRotate()` and `glScale()` 
 
 ![Practica 2](./img/p2_01.png)
 
