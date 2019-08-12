@@ -1,15 +1,3 @@
-/*
-    PROGRAMA:       "Manejo de Menús y Sub-menús GLUT"
-
-    AUTORS:          Juan Carlos Conde Ramírez
-
-
-    DESCRIPCIÓN:    Programa que dibuja 3 cuadrados a partir de uno principal, cada uno de diferente color.
-                    Hace uso de las funciones de GLUT para definir la acción de los eventos de un MENÚ
-                    principal que tiene 2 opciones: "Color de Fondo" y "Color de Figuras". De estas dos
-                    opciones se desprenden dos SUBMENÚS con 2 y 6 opciones, respectivamente, para cambiar
-                    el color.
-*/
 // Marco Antonio Rojas Arriaga
 
 #ifdef __APPLE__

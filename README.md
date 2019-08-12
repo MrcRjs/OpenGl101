@@ -3,6 +3,8 @@ OpenGL 101
 
 Graphics in OpenGL
 
+[TOC]
+
 ### Installation
 
 #### pre-requisites
@@ -62,7 +64,25 @@ The character is separated into different parts to be drawn with separate functi
 
 ![Practica 3](./img/p3_01.png)
 
-![Practica 4](./img/p4_01.png)
+#### Practica 4
+
+##### menus.cpp menu.cpp menu_niveles.cpp
+
+Creation and management of options menus to modify the graphic content using `glutCreateMenu()` `glutAttachMenu()` `glutAddSubMenu()` and `glutAddMenuEntry()`.
+
+![Practica 4 menu](./img/p4_01.png)
+
+##### curvas.cpp
+
+Graphing of different curves, with a menu of options to modify the color, shape and background color.
+
+![Practica 4 curvas](./img/p4_02.png)
+
+##### key_motion.cpp
+
+Use keyboard events to modify graphics.
+
+![Practica 4 key motion](./img/p4_03.png)
 
 
 ![Practica 5](./img/p5_01.png)
