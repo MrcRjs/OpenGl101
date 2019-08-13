@@ -121,9 +121,24 @@ Camera positioning using `gluLookAt()`
 
 ![Practica 5](./img/p5_09.png)
 
+#### Practica 6 
+
+##### teteras.cpp
+
+Applying different textures like redPlastic, blackPlastic, esmeralda, pewter, chrome using `glMaterialfv()`
+
 ![Practica 6](./img/p6_01.png)
 ![Practica 6](./img/p6_02.png)
 ![Practica 6](./img/p6_03.png)
+
+
+##### texturas1/texturas.cpp, texturas2/texturas.cpp texturas3/multtexturas.cpp
+
+Loading textures from BMP files with `glTexParameter()` and using an external library [SOIL](https://github.com/littlstar/soil) `SOIL_load_image()` and `gluBuild2DMipmaps()`
+
+![Practica 6](./img/p6_05.png)
+![Practica 6](./img/p6_06.png)
+![Practica 6](./img/p6_07.png)
 
 ![Practica 8](./img/p8_01.png)
 ![Practica 8](./img/p8_02.png)
