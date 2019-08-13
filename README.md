@@ -140,13 +140,35 @@ Loading textures from BMP files with `glTexParameter()` and using an external li
 ![Practica 6](./img/p6_06.png)
 ![Practica 6](./img/p6_07.png)
 
+#### Practica 8
+
+##### curvas_bezier
+
+Creation of [Bézier curves](https://en.wikipedia.org/wiki/B%C3%A9zier_curve) defining points on a plain.
+
 ![Practica 8](./img/p8_01.png)
 ![Practica 8](./img/p8_02.png)
 ![Practica 8](./img/p8_03.png)
 ![Practica 8](./img/p8_04.png)
+
+##### simpsons_bezier
+
+Simpson's characters created using Bézier curves.
+
 ![Practica 8](./img/p8_05.png)
 ![Practica 8](./img/p8_07.png)
+
+##### superficie_bezier
+
+Creation of Bèzier surfaces using `glEvalMesh()` and `glMapGrid()`.
+
 ![Practica 8](./img/p8_08.png)
 ![Practica 8](./img/p8_09.png)
+
+#### Final
+
+#### final.cpp
+
+Loading 3D scenarios using an external library [OBJ-Loader](https://github.com/Bly7/OBJ-Loader)
 
 ![Final](./img/final.jpeg)
