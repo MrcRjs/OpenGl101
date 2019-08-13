@@ -1,8 +1,6 @@
 OpenGL 101
 ============
 
-Graphics in OpenGL
-
 * [OpenGL 101](#opengl-101)
      * [Installation](#installation)
         * [pre-requisites](#pre-requisites)
@@ -21,7 +19,15 @@ Graphics in OpenGL
         * [Practica 5](#practica-5)
            * [iluminacion3D.cpp iluminacion3Dpt2.cpp](#iluminacion3dcpp-iluminacion3dpt2cpp)
            * [proyeccion3D.cpp](#proyeccion3dcpp)
-
+        * [Practica 6](#practica-6)
+           * [teteras.cpp](#teterascpp)
+           * [texturas1/texturas.cpp, texturas2/texturas.cpp texturas3/multtexturas.cpp](#texturas1texturascpp-texturas2texturascpp-texturas3multtexturascpp)
+        * [Practica 8](#practica-8)
+           * [curvas_bezier](#curvas_bezier)
+           * [simpsons_bezier](#simpsons_bezier)
+           * [superficie_bezier](#superficie_bezier)
+        * [Final](#final)
+        * [final.cpp](#finalcpp)
 
 ### Installation
 
