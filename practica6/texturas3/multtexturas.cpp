@@ -1,5 +1,9 @@
+// OSX
 // Nota importante: Cuando realize el ligado, agregar la libreria glaux.lib
 //  en Project --> Settings (Link)
+
+// Linux
+// $ sudo apt install libsoil-dev
 
 // Marco Antonio Rojas Arriaga
 
@@ -13,7 +17,7 @@
 
 #endif
 
-#include "../SOIL.h"
+#include <SOIL/SOIL.h>
 #include <math.h>
 
 class COGLTexture {
